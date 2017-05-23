@@ -26,15 +26,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     windownuevapartida.cpp \
-    arbolbinario.cpp \
     avl.cpp \
-    heap.cpp
+    heap.cpp \
+    abb.cpp
 
 HEADERS  += mainwindow.h \
     windownuevapartida.h \
-    arbolbinario.h \
     avl.h \
-    heap.h
+    heap.h \
+    estructurasTablero.h \
+    abb.h \
+    listaplagas.h
 
 FORMS    += mainwindow.ui \
     windownuevapartida.ui

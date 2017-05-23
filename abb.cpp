@@ -17,9 +17,9 @@ Nodo * Arbol::insertar(int valor, Nodo* nodo) {
     if (nodo == NULL) {
         return new Nodo(valor);
     }
-    // si el valor es mayor,
+    //si el valor es mayor,
     //llama recursivamente a insertar en el hijo
-    // derecho
+    //derecho
     else if (nodo->indice < valor) {
         nodo->hijoderecho = insertar(valor, nodo->hijoderecho);
     }// en caso contrario, va al lado izquierdo
