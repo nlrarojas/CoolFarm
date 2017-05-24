@@ -115,6 +115,14 @@ void windownuevapartida::actualizarDatosGUI(){
         nodoArbol->rangoInferior = ui->spinBox_3->text().toInt();
         nodoArbol->rangoSuperior = ui->spinBox_2->text().toInt();
     }
+    
+    infoEspantapajaros->costo = ui->spinBox_76->text().toInt();
+    infoEspantapajaros->cantidadPorTerreno = ui->spinBox_77->text().toInt();
+    
+    infoMercado->tiempoAbre = ui->spinBox_73->text().toInt();
+    infoMercado->tiempoAbierto = ui->spinBox_74->text().toInt();
+    infoMercado->rangoInferior = ui->spinBox_75->text().toInt();
+    infoMercado->rangoSuperior = ui->spinBox_4->text().toInt();
 }
 
 void windownuevapartida::on_tipoAnimales_currentIndexChanged(const QString &arg1)

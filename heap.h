@@ -1,16 +1,18 @@
-#ifndef HEAPARBOL_H
-#define HEAPARBOL_H
-
-#endif // HEAPARBOL_H
 #ifndef HEAP_H
 #define HEAP_H
-#include <QtCore>
 
+#include <QtCore>
+#include "estructurasTablero.h"
 
 struct Heap
 {
     int *arbol, largo;
-    Heap();
+    NodoInfoArbol * nodoInfoArbol;
+
+    Heap(NodoInfoArbol * pNodoInfoArbol){
+        this->nodoInfoArbol = pNodoInfoArbol;
+    }
+
     void insertar(int dato);
     void imprimir();
     void eliminar();

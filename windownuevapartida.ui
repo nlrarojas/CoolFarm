@@ -76,9 +76,9 @@
      <widget class="QWidget" name="verticalLayoutWidget_9">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>250</y>
-        <width>211</width>
+        <x>60</x>
+        <y>370</y>
+        <width>311</width>
         <height>111</height>
        </rect>
       </property>
@@ -169,6 +169,16 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
           <layout class="QHBoxLayout" name="horizontalLayout_17">
            <item>
             <widget class="QSpinBox" name="spinBox_75"/>
+           </item>
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>a</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinBox_4"/>
            </item>
            <item>
             <widget class="QLabel" name="label_114">
@@ -356,10 +366,10 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QWidget" name="verticalLayoutWidget_10">
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>260</y>
+        <x>530</x>
+        <y>380</y>
         <width>181</width>
-        <height>83</height>
+        <height>102</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="Espantapajaros">
@@ -376,17 +386,6 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
        </item>
        <item>
         <layout class="QFormLayout" name="formLayout_16">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_115">
-           <property name="styleSheet">
-            <string notr="true">color: rgb(0, 0, 0);
-font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Costo           </string>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_18">
            <item>
@@ -412,6 +411,17 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
            </item>
           </layout>
          </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_115">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Costo           </string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
       </layout>
@@ -420,9 +430,9 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
       <property name="geometry">
        <rect>
         <x>400</x>
-        <y>70</y>
-        <width>321</width>
-        <height>156</height>
+        <y>106</y>
+        <width>362</width>
+        <height>164</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="Arboles">
@@ -449,44 +459,14 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout">
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_117">
-           <property name="styleSheet">
-            <string notr="true">color: rgb(0, 0, 0);
-font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Tiempo Crecimiento</string>
-           </property>
-          </widget>
-         </item>
          <item row="2" column="2">
           <widget class="QSpinBox" name="spinBox_81"/>
          </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_129">
-           <property name="styleSheet">
-            <string notr="true">color: rgb(0, 0, 0);
-font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Tiempo Cosecha</string>
-           </property>
-          </widget>
+         <item row="0" column="2">
+          <widget class="QSpinBox" name="spinBox_79"/>
          </item>
          <item row="1" column="2">
           <widget class="QSpinBox" name="spinBox_78"/>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_121">
-           <property name="styleSheet">
-            <string notr="true">color: rgb(0, 0, 0);
-font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Cantidad Frutos</string>
-           </property>
-          </widget>
          </item>
          <item row="0" column="1">
           <widget class="QLabel" name="label_2">
@@ -506,8 +486,25 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="2">
-          <widget class="QSpinBox" name="spinBox_79"/>
+         <item row="3" column="2">
+          <widget class="QSpinBox" name="spinBox"/>
+         </item>
+         <item row="4" column="2">
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <widget class="QSpinBox" name="spinBox_3"/>
+           </item>
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>a</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinBox_2"/>
+           </item>
+          </layout>
          </item>
          <item row="4" column="0">
           <widget class="QLabel" name="label_130">
@@ -520,15 +517,76 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="2">
-          <widget class="QSpinBox" name="spinBox"/>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_129">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Tiempo Cosecha</string>
+           </property>
+          </widget>
          </item>
-         <item row="4" column="2">
-          <widget class="QSpinBox" name="spinBox_2"/>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_121">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Cantidad Frutos</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_117">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Tiempo Crecimiento</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
       </layout>
+     </widget>
+     <widget class="QLabel" name="label_118">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>40</y>
+        <width>71</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Plagas</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_119">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>70</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Árboles</string>
+      </property>
      </widget>
     </widget>
    </widget>

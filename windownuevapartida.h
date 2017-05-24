@@ -2,6 +2,9 @@
 #define WINDOWNUEVAPARTIDA_H
 
 #include <QMainWindow>
+#include <QDebug>
+#include <QTimer>
+#include "estructurasTablero.h"
 
 namespace Ui {
 class windownuevapartida;
@@ -16,9 +19,20 @@ public:
     ~windownuevapartida();
 
 private slots:
+    void actualizarDatosGUI();
+    void on_tipoAnimales_currentIndexChanged(const QString &arg1);
+
+    void on_tipoArboles_currentIndexChanged(const QString &arg1);
 
 private:
     Ui::windownuevapartida *ui;
+    ListaPlagas * lista;
+    listaNodosArboles * tiposInfoArboles;
+    Mercado * infoMercado;
+    Espantapajaros * infoEspantapajaros;
+    QTimer * timer;
+    int tipoPlaga;
+    int tipoArbol;
 };
 
 #endif // WINDOWNUEVAPARTIDA_H

@@ -50,14 +50,14 @@ struct Espantapajaros{
 };
 
 struct Mercado{
+    int tiempoAbre;
     int tiempoAbierto;
-    int tiempoQueAbre;
     int rangoInferior;
     int rangoSuperior;
 
     Mercado(int pTiempoAbierto, int pTiempoQueAbre, int pRangoInferior, int pRangoSuperior){
-        this->tiempoAbierto = pTiempoAbierto;
-        this->tiempoQueAbre = pTiempoQueAbre;
+        this->tiempoAbre = pTiempoAbierto;
+        this->tiempoAbierto = pTiempoQueAbre;
         this->rangoInferior = pRangoInferior;
         this->rangoSuperior = pRangoSuperior;
     }

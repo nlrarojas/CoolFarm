@@ -6,7 +6,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->botonNuevaPartida, SIGNAL(clicked()), this, SLOT(openNewWindow()));
 }
 
 MainWindow::~MainWindow()

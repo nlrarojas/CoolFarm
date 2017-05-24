@@ -20,10 +20,10 @@ Nodo * Arbol::insertar(int valor, Nodo* nodo) {
     //si el valor es mayor,
     //llama recursivamente a insertar en el hijo
     //derecho
-    else if (nodo->indice < valor) {
+    else if (nodo->precio < valor) {
         nodo->hijoderecho = insertar(valor, nodo->hijoderecho);
     }// en caso contrario, va al lado izquierdo
-    else if (nodo->indice >= valor) {
+    else if (nodo->precio >= valor) {
         nodo->hijoizquierdo = insertar(valor, nodo->hijoizquierdo);
     }
     return nodo;
@@ -32,14 +32,14 @@ Nodo * Arbol::insertar(int valor, Nodo* nodo) {
 void Arbol::inOrden(Nodo* nodo) {
     if (nodo != NULL) {
         inOrden(nodo->hijoizquierdo);
-        cout << nodo->indice << "  ";
+        cout << nodo->precio << "  ";
         inOrden(nodo->hijoderecho);
     }
 }
 
 void Arbol::preOrden(Nodo* nodo) {
     if (nodo != NULL) {
-        cout << nodo->indice << "  ";
+        cout << nodo->precio << "  ";
         preOrden(nodo->hijoizquierdo);
         preOrden(nodo->hijoderecho);
     }
@@ -49,7 +49,7 @@ void Arbol::posOrden(Nodo* nodo) {
     if (nodo != NULL) {
         posOrden(nodo->hijoizquierdo);
         posOrden(nodo->hijoderecho);
-        cout << nodo->indice << "  ";
+        cout << nodo->precio << "  ";
 
     }
 }
@@ -69,11 +69,11 @@ Nodo* Arbol::buscar(int valor, Nodo* nodo) {
     // ubicar el valor, en un nuevo nodo
     if (nodo == NULL) {
         return NULL;
-    } else if (nodo->indice == valor) {
+    } else if (nodo->precio == valor) {
         return nodo;
     }// si el valor es mayor, llama recursivamente a insertar en el hijo
     // derecho
-    else if (nodo->indice < valor) {
+    else if (nodo->precio < valor) {
         return buscar(valor, nodo->hijoderecho);
     }// en caso contrario, va al lado izquierdo
     else //(nodo.dato >= valor)
@@ -91,11 +91,11 @@ Nodo * Arbol::buscarNodo(int indice, Nodo* nodo) {
     // ubicar el valor, en un nuevo nodo
     if (nodo == NULL) {
         return NULL;
-    } else if (nodo->indice == indice) {
+    } else if (nodo->precio == indice) {
         return nodo;
     }// si el valor es mayor, llama recursivamente a insertar en el hijo
     // derecho
-    else if (nodo->indice < indice) {
+    else if (nodo->precio < indice) {
         return buscarNodo(indice, nodo->hijoderecho);
     }// en caso contrario, va al lado izquierdo
     else //(nodo.dato >= valor)
@@ -223,9 +223,9 @@ Nodo* Arbol::borrarElemento(int ele) {
 Nodo* Arbol::borrarElemento(int ele, Nodo* arbol) {
     if (arbol == NULL) {
         return NULL;
-    } else if (ele < arbol->indice)
+    } else if (ele < arbol->precio)
         arbol->hijoizquierdo = borrarElemento(ele, arbol->hijoizquierdo);
-    else if (ele > arbol->indice)
+    else if (ele > arbol->precio)
         arbol->hijoderecho = borrarElemento(ele, arbol->hijoderecho);
     else if (arbol->hijoizquierdo == NULL && arbol->hijoderecho == NULL)
         arbol = NULL;
@@ -235,8 +235,8 @@ Nodo* Arbol::borrarElemento(int ele, Nodo* arbol) {
         arbol = arbol->hijoizquierdo;
     else {
         Nodo* max = mayor(arbol->hijoizquierdo); // mayor de los menores
-        arbol->hijoizquierdo = borrarElemento(max->indice, arbol->hijoizquierdo);
-        arbol->indice = max->indice;
+        arbol->hijoizquierdo = borrarElemento(max->precio, arbol->hijoizquierdo);
+        arbol->precio = max->precio;
     }
     return arbol;
 }

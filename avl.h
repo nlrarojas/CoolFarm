@@ -1,6 +1,7 @@
 #ifndef AVL_H
 #define AVL_H
 #include <QtCore>
+#include "estructurasTablero.h"
 
 struct Nodo{
     int dato;
@@ -18,7 +19,12 @@ struct Nodo{
 struct Avl
 {
     Nodo *raiz;
-    Avl();
+    NodoInfoArbol * nodoInfoArbol;
+
+    Avl(NodoInfoArbol * pNodoInfoArbol){
+        this->nodoInfoArbol = pNodoInfoArbol;
+    }
+
     void insertar(int);
     Nodo* insertar(int, Nodo*);
     void sacarBalance(Nodo*);

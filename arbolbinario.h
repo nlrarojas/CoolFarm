@@ -3,35 +3,28 @@
 
 #include <cstdlib>
 #include <iostream>
+#include "estructurasTablero.h"
 
 using namespace std;
 
 struct Nodo {
-    int precio;
+    int precio;    
     Nodo* hijoizquierdo;
     Nodo* hijoderecho;
 
     Nodo(int pPrecio) {
-        this->precio = pPrecio;
+        this->precio = pPrecio;        
         hijoizquierdo = hijoderecho = NULL;
     }
 };
 
 struct Arbol {
     Nodo * raiz;
-    int costo;
-    int tiempoCrecimiento;
-    int tiempoCosecha;
-    int rangoInferior;
-    int rangoSuperior;
+    NodoInfoArbol * nodoInfoArbol;
 
-    Arbol(int pCosto, int pTiempoCrecimiento, int pTiempoCosecha, int pRangoInferior, int pRangoSuperior) {
+    Arbol(NodoInfoArbol * pNodoInfoArbol) {
+        this->nodoInfoArbol = pNodoInfoArbol;
         raiz = NULL;
-        this->costo = pCosto;
-        this->tiempoCrecimiento = pTiempoCrecimiento;
-        this->tiempoCosecha = pTiempoCosecha;
-        this->rangoInferior = pRangoInferior;
-        this->rangoSuperior = pRangoSuperior;
     }
 
     void insertar(int);
