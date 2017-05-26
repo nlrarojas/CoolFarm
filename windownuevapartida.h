@@ -21,18 +21,20 @@ public:
 private slots:
     void actualizarDatosGUI();
     void on_tipoAnimales_currentIndexChanged(const QString &arg1);
-
     void on_tipoArboles_currentIndexChanged(const QString &arg1);
 
 private:
     Ui::windownuevapartida *ui;
     ListaPlagas * lista;
-    listaNodosArboles * tiposInfoArboles;
+    ListaNodosArboles * tiposInfoArboles;
     Mercado * infoMercado;
     Espantapajaros * infoEspantapajaros;
     QTimer * timer;
     int tipoPlaga;
     int tipoArbol;
+    int cantidadEspantapajaros;
+    bool activo;
+    void datosMercado(void);
 };
 
 #endif // WINDOWNUEVAPARTIDA_H

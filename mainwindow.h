@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "windownuevapartida.h"
+#include <QFileDialog>
+#include <QDebug>
 
 namespace Ui {
     class MainWindow;
@@ -16,11 +18,9 @@ class MainWindow : public QMainWindow
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
 
-    public slots:
-        void openNewWindow();
-
 private slots:
         void on_botonNuevaPartida_clicked();
+        void on_toolButton_2_clicked();
 
 private:
         windownuevapartida * mywindownuevapartida;

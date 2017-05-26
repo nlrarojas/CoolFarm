@@ -13,13 +13,21 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::openNewWindow()
+void MainWindow::on_botonNuevaPartida_clicked()
 {
     mywindownuevapartida = new windownuevapartida();
     mywindownuevapartida->show();
+    this->hide();
 }
 
-void MainWindow::on_botonNuevaPartida_clicked()
+void MainWindow::on_toolButton_2_clicked()
 {
-    openNewWindow();
+    QString directory = QFileDialog::getOpenFileName(this, "Seleccione el archivo que desea cargar", "/", NULL);
+    qDebug() << directory;
+    if(!directory.isEmpty()){
+        //Primero carga del archivo todas las estructuras del juego
+        mywindownuevapartida = new windownuevapartida();
+        mywindownuevapartida->show();
+        this->hide();
+    }
 }
