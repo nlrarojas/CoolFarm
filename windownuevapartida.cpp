@@ -1,5 +1,4 @@
 #include "windownuevapartida.h"
-#include "ui_windownuevapartida.h"
 
 windownuevapartida::windownuevapartida(QWidget *parent) :
     QMainWindow(parent),
@@ -7,16 +6,30 @@ windownuevapartida::windownuevapartida(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QLabel * terreno[8][8];
+    QLabel * tierra[8][8];
     for (int x=0; x<8; x++){
         for (int y=0; y<8; y++){
+            tierra[x][y] = new QLabel(this->ui->juego);
             terreno[x][y] = new QLabel(this->ui->juego);
-            terreno[x][y]->setPixmap(QPixmap(":/imagenes/tierra.png"));
+            tierra[x][y]->setPixmap(QPixmap(":/imagenes/tierra.png"));
+            tierra[x][y]->setGeometry(x*50+50,y*50+50, 50, 50);
             terreno[x][y]->setGeometry(x*50+50,y*50+50, 50, 50);
+            tierra[x][y]->setScaledContents(true);
             terreno[x][y]->setScaledContents(true);
+            tierra[x][y]->show();
             terreno[x][y]->show();
         }
     }
+
+    matrizJuego[3][0] = 2;
+    matrizJuego[4][7] = 2;
+    matrizJuego[5][7] = 3;
+    matrizJuego[5][6] = 4;
+    matrizJuego[5][5] = 5;
+    matrizJuego[5][5] = 6;
+    matrizJuego[5][1] = 7;
+    matrizJuego[2][7] = 8;
+    matrizJuego[7][7] = 9;
 
     ui->tipoAnimales->addItem("Seleccione");
     ui->tipoAnimales->addItem("Ovejas");
@@ -41,15 +54,20 @@ windownuevapartida::windownuevapartida(QWidget *parent) :
 
     infoMercado = new Mercado(0, 0, 0, 0);
     infoEspantapajaros = new Espantapajaros(0.0, 0);
+    granjero = new Granjero(0, 0, 0);
+    mercadoPlataforma = new MercadoPlataforma();
+    mercadoPlataforma->mercado = infoMercado;
 
     tipoPlaga = 0;
     tipoArbol = 0;
     cantidadEspantapajaros = 0;
-    activo = false;
+
+    terreno[granjero->posX][granjero->posY]->setPixmap(QPixmap(":/imagenes/granjero.png"));
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(actualizarDatosGUI()));
     timer->start(250);
+    mercadoPlataforma->start();
 }
 
 windownuevapartida::~windownuevapartida()
@@ -125,9 +143,13 @@ void windownuevapartida::actualizarDatosGUI(){
     infoMercado->tiempoAbierto = ui->spinBox_74->text().toInt();
     infoMercado->rangoInferior = ui->spinBox_75->text().toInt();
     infoMercado->rangoSuperior = ui->spinBox_4->text().toInt();
+    mercadoPlataforma->mercado = infoMercado;
+
+    granjero->tiempoDesplazamiento = ui->spinBox_80->text().toInt();
 
     datosMercado();
-    activo = true;
+    pintarTablero();
+    estadoMercado();
 }
 
 void windownuevapartida::on_tipoAnimales_currentIndexChanged(const QString &arg1)
@@ -217,4 +239,62 @@ void windownuevapartida::datosMercado(){
 
     ui->lineEdit_costo_rojinegro->setText(QString::number(rojinegro->precio));
     ui->lineEdit_crece_rojinegro->setText(QString::number(rojinegro->tiempoCrecimiento));
+}
+
+void windownuevapartida::pintarTablero(){
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if(matrizJuego[i][j] == 1){
+                terreno[i][j]->setPixmap(QPixmap(":/imagenes/granjero.png"));
+            } else if(matrizJuego[i][j] == 2){
+                terreno[i][j]->setPixmap(QPixmap(":/imagenes/heap.png"));
+            } else if(matrizJuego[i][j] == 3){
+                terreno[i][j]->setPixmap(QPixmap(":/imagenes/avl.png"));
+            } else if(matrizJuego[i][j] == 4){
+                terreno[i][j]->setPixmap(QPixmap(":/imagenes/abb.png"));
+            } else if(matrizJuego[i][j] == 5){
+                terreno[i][j]->setPixmap(QPixmap(":/imagenes/rojinegro.png"));
+            } else if(matrizJuego[i][j] == 6){
+                terreno[i][j]->setPixmap(QPixmap(":/imagenes/espantapajaros.png"));
+            } else if(matrizJuego[i][j] == 7){
+                terreno[i][j]->setPixmap(QPixmap(":/imagenes/cuervo.png"));
+            } else if(matrizJuego[i][j] == 8){
+                terreno[i][j]->setPixmap(QPixmap(":/imagenes/plaga.png"));
+            } else if(matrizJuego[i][j] == 9){
+                terreno[i][j]->setPixmap(QPixmap(":/imagenes/oveja.png"));
+            }
+        }
+    }
+}
+
+void windownuevapartida::keyPressEvent(QKeyEvent * tecla){
+    if (tecla->key() == Qt::Key_A){
+        terreno[granjero->posX][granjero->posY]->setPixmap(QPixmap(" "));
+        granjero->moverIzquierda();
+        terreno[granjero->posX][granjero->posY]->setPixmap(QPixmap(":/imagenes/granjero.png"));
+    }
+    if (tecla->key() == Qt::Key_W){
+        terreno[granjero->posX][granjero->posY]->setPixmap(QPixmap(" "));
+        granjero->moverArriba();
+        terreno[granjero->posX][granjero->posY]->setPixmap(QPixmap(":/imagenes/granjero.png"));
+    }
+    if (tecla->key() == Qt::Key_S){
+        terreno[granjero->posX][granjero->posY]->setPixmap(QPixmap(" "));
+        granjero->moverAbajo();
+        terreno[granjero->posX][granjero->posY]->setPixmap(QPixmap(":/imagenes/granjero.png"));
+
+    }
+    if (tecla->key() == Qt::Key_D){
+        terreno[granjero->posX][granjero->posY]->setPixmap(QPixmap(" "));
+        granjero->moverDerecha();
+        terreno[granjero->posX][granjero->posY]->setPixmap(QPixmap(":/imagenes/granjero.png"));
+    }
+}
+
+void windownuevapartida::estadoMercado(){
+    if(mercadoPlataforma->estado){
+        ui->label_estado_mercado->setText("Estado: Abierto");
+    }else{
+        ui->label_estado_mercado->setText("Estado: Cerrado");
+    }
 }

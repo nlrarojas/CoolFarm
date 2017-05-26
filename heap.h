@@ -9,9 +9,7 @@ struct Heap
     int *arbol, largo;
     NodoInfoArbol * nodoInfoArbol;
 
-    Heap(NodoInfoArbol * pNodoInfoArbol){
-        this->nodoInfoArbol = pNodoInfoArbol;
-    }
+    Heap(NodoInfoArbol *);
 
     void insertar(int dato);
     void imprimir();

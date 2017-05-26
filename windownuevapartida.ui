@@ -614,6 +614,51 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
        <string>Árboles</string>
       </property>
      </widget>
+     <widget class="QWidget" name="verticalLayoutWidget_11">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>260</y>
+        <width>181</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="Espantapajaros_2">
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="label_120">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 0, 0);
+font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Granjero</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QFormLayout" name="formLayout_17">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_123">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Velocidad de movimiento</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <layout class="QHBoxLayout" name="horizontalLayout_20">
+           <item>
+            <widget class="QSpinBox" name="spinBox_80"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
     </widget>
     <widget class="QWidget" name="Mercado_">
      <attribute name="title">
@@ -664,7 +709,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="imagenes.qrc">:/imagenes/Avl.png</pixmap>
+       <pixmap resource="imagenes.qrc">:/imagenes/avl.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -696,7 +741,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="imagenes.qrc">:/imagenes/delonix_regia.png</pixmap>
+       <pixmap resource="imagenes.qrc">:/imagenes/heap.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -741,7 +786,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="imagenes.qrc">:/imagenes/tree-304181_640.png</pixmap>
+       <pixmap resource="imagenes.qrc">:/imagenes/rojinegro.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -786,7 +831,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="imagenes.qrc">:/imagenes/Arbol-Amarillo.png</pixmap>
+       <pixmap resource="imagenes.qrc">:/imagenes/abb.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -881,7 +926,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
        <string>Mercado</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_22">
+     <widget class="QLabel" name="label_estado_mercado">
       <property name="geometry">
        <rect>
         <x>30</x>

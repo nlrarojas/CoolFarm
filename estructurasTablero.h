@@ -27,15 +27,34 @@ struct plaga{
     }
 };
 
-struct granjero{
+struct Granjero{
     int tiempoDesplazamiento;
     int posX;
     int posY;
 
-    granjero(int tiempoDesplazamiento, int posX, int posY){
+    Granjero(int tiempoDesplazamiento, int posX, int posY){
         this->tiempoDesplazamiento = tiempoDesplazamiento;
         this->posX = posX;
         this->posY = posY;
+    }
+    void moverIzquierda(){
+        if ((this->posX)-1 >= 0)
+            this->posX--;
+    }
+
+    void moverDerecha(){
+        if ((this->posX)+1 < 8)
+            this->posX++;
+    }
+
+    void moverAbajo(){
+        if ((this->posY)+1 < 8)
+            this->posY++;
+    }
+
+    void moverArriba(){
+        if ((this->posY)-1 >= 0)
+            this->posY--;
     }
 };
 

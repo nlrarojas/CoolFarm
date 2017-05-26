@@ -7,9 +7,10 @@
 
 using namespace std;
 
-Avl::Avl()
+Avl::Avl(NodoInfoArbol * pNodoInfoArbol)
 {
     this->raiz = NULL;
+    this->nodoInfoArbol = pNodoInfoArbol;
 }
 
 

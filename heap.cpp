@@ -7,10 +7,11 @@
 
 using namespace std;
 
-Heap::Heap()
+Heap::Heap(NodoInfoArbol * pNodoInfoArbol)
 {
     this->arbol = NULL;
     this->largo = 0;
+    this->nodoInfoArbol = pNodoInfoArbol;
 }
 
 void Heap::insertar(int dato)

@@ -28,14 +28,16 @@ SOURCES += main.cpp\
     windownuevapartida.cpp \
     avl.cpp \
     heap.cpp \
-    arbolbinario.cpp
+    arbolbinario.cpp \
+    mercadoplataforma.cpp
 
 HEADERS  += mainwindow.h \
     windownuevapartida.h \
     avl.h \
     heap.h \
     estructurasTablero.h \
-    arbolbinario.h
+    arbolbinario.h \
+    mercadoplataforma.h
 
 FORMS    += mainwindow.ui \
     windownuevapartida.ui

@@ -21,9 +21,7 @@ struct Avl
     Nodo *raiz;
     NodoInfoArbol * nodoInfoArbol;
 
-    Avl(NodoInfoArbol * pNodoInfoArbol){
-        this->nodoInfoArbol = pNodoInfoArbol;
-    }
+    Avl(NodoInfoArbol *);
 
     void insertar(int);
     Nodo* insertar(int, Nodo*);
