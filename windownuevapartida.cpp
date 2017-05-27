@@ -18,18 +18,9 @@ windownuevapartida::windownuevapartida(QWidget *parent) :
             terreno[x][y]->setScaledContents(true);
             tierra[x][y]->show();
             terreno[x][y]->show();
+            matrizJuego[x][y] = 0;
         }
     }
-
-    matrizJuego[3][0] = 2;
-    matrizJuego[4][7] = 2;
-    matrizJuego[5][7] = 3;
-    matrizJuego[5][6] = 4;
-    matrizJuego[5][5] = 5;
-    matrizJuego[5][5] = 6;
-    matrizJuego[5][1] = 7;
-    matrizJuego[2][7] = 8;
-    matrizJuego[7][7] = 9;
 
     ui->tipoAnimales->addItem("Seleccione");
     ui->tipoAnimales->addItem("Ovejas");
@@ -54,13 +45,22 @@ windownuevapartida::windownuevapartida(QWidget *parent) :
 
     infoMercado = new Mercado(0, 0, 0, 0);
     infoEspantapajaros = new Espantapajaros(0.0, 0);
-    granjero = new Granjero(0, 0, 0);
+    granjero = new Granjero(0, 0, 0);    
     mercadoPlataforma = new MercadoPlataforma();
     mercadoPlataforma->mercado = infoMercado;
+
+    avlComprados = new ColaAVLComprados();
+    abbComprados = new ColaABBComprados();
+    heapComprados = new ColaHeapComprados();
 
     tipoPlaga = 0;
     tipoArbol = 0;
     cantidadEspantapajaros = 0;
+
+    cantidadArbolesABB = 0;
+    cantidadArbolesAVL = 0;
+    cantitadArbolesSplay = 0;
+    cantidadArbolesHeap = 0;
 
     terreno[granjero->posX][granjero->posY]->setPixmap(QPixmap(":/imagenes/granjero.png"));
 
@@ -146,6 +146,13 @@ void windownuevapartida::actualizarDatosGUI(){
     mercadoPlataforma->mercado = infoMercado;
 
     granjero->tiempoDesplazamiento = ui->spinBox_80->text().toInt();
+
+    ui->label_cantidad_AVL->setText("AVL x " + QString::number(cantidadArbolesAVL));
+    ui->label_cantidad_ABB->setText("Árbol binario x " + QString::number(cantidadArbolesABB));
+    ui->label_cantidad_HEAP->setText("HEAP x " + QString::number(cantidadArbolesHeap));
+    ui->label_cantidad_SPLAY->setText("ROJINEGRO x " + QString::number(cantitadArbolesSplay));
+
+    ui->label_cantidad_espantapajaros->setText("Cantidad: " + QString::number(cantidadEspantapajaros) + "/" + QString::number(infoEspantapajaros->cantidadPorTerreno));
 
     datosMercado();
     pintarTablero();
@@ -289,6 +296,21 @@ void windownuevapartida::keyPressEvent(QKeyEvent * tecla){
         granjero->moverDerecha();
         terreno[granjero->posX][granjero->posY]->setPixmap(QPixmap(":/imagenes/granjero.png"));
     }
+    if (tecla->key() == Qt::Key_H){
+        sembrarArbolHEAP();
+    }
+    if (tecla->key() == Qt::Key_J){
+        sembrarArbolABB();
+    }
+    if (tecla->key() == Qt::Key_K){
+        sembrarArbolAVL();
+    }
+    if (tecla->key() == Qt::Key_L){
+        sembrarArbolSPLAY();
+    }
+    if (tecla->key() == Qt::Key_P){
+        colocarEspantapajaros();
+    }
 }
 
 void windownuevapartida::estadoMercado(){
@@ -297,4 +319,150 @@ void windownuevapartida::estadoMercado(){
     }else{
         ui->label_estado_mercado->setText("Estado: Cerrado");
     }
+}
+
+void windownuevapartida::on_toolButton_3_clicked()
+{
+    comprarAbolAVL();
+}
+
+void windownuevapartida::on_toolButton_6_clicked()
+{
+    comprarAbolSplay();
+}
+
+void windownuevapartida::on_toolButton_4_clicked()
+{
+    comprarAbolHeap();
+}
+
+void windownuevapartida::on_toolButton_5_clicked()
+{
+    comprarAbolABB();
+}
+
+void windownuevapartida::comprarAbolAVL(){
+    if(mercadoPlataforma->estado){
+        NodoInfoArbol * temporal = tiposInfoArboles->buscarTipoArbol("AVL");
+        Avl * nuevoArbol = new Avl(temporal);
+        avlComprados->encolar(new NodoArbolAVL(nuevoArbol));
+        cantidadArbolesAVL++;
+    }else{
+        mostrarMensaje("El mercado no está abierto. Tiene que esperar a que abra para poder realizar su compra");
+    }
+}
+
+void windownuevapartida::comprarAbolABB(){
+    if(mercadoPlataforma->estado){
+        NodoInfoArbol * temporal = tiposInfoArboles->buscarTipoArbol("ABB");
+        Arbol * nuevoArbol = new Arbol(temporal);
+        abbComprados->encolar(new NodoArbolABB(nuevoArbol));
+        cantidadArbolesABB++;
+    }else{
+        mostrarMensaje("El mercado no está abierto. Tiene que esperar a que abra para poder realizar su compra");
+    }
+}
+
+void windownuevapartida::comprarAbolHeap(){
+    if(mercadoPlataforma->estado){
+        NodoInfoArbol * temporal = tiposInfoArboles->buscarTipoArbol("HEAP");
+        Heap * nuevoArbol = new Heap(temporal);
+        heapComprados->encolar(new NodoArbolHeap(nuevoArbol));
+        cantidadArbolesHeap++;
+    }else{
+        mostrarMensaje("El mercado no está abierto. Tiene que esperar a que abra para poder realizar su compra");
+    }
+}
+
+void windownuevapartida::comprarAbolSplay(){
+    if(mercadoPlataforma->estado){
+        cantitadArbolesSplay++;
+    }else{
+        mostrarMensaje("El mercado no está abierto. Tiene que esperar a que abra para poder realizar su compra");
+    }
+}
+
+void windownuevapartida::sembrarArbolAVL(){
+    if(matrizJuego[granjero->posX][granjero->posY] == 0 || matrizJuego[granjero->posX][granjero->posY] == -1 || matrizJuego[granjero->posX][granjero->posY] == 2){
+        if(!avlComprados->isEmpty()){
+            Avl * temporal = avlComprados->desEncolar()->arbolAVL;
+            matrizArbolesTerreno[granjero->posX][granjero->posY] = new NodoArbolesTerreno(NULL, temporal, NULL, "AVL");
+            matrizJuego[granjero->posX][granjero->posY] = 3;
+            cantidadArbolesAVL--;
+        }else{
+            mostrarMensaje("No tiene árboles disponibles debe de comprar");
+        }
+    } else{
+        mostrarMensaje("No puede sembrar un árbol en esa posición");
+    }
+}
+
+void windownuevapartida::sembrarArbolABB(){
+    if(matrizJuego[granjero->posX][granjero->posY] == 0 || matrizJuego[granjero->posX][granjero->posY] == -1 || matrizJuego[granjero->posX][granjero->posY] == 2){
+        if(!abbComprados->isEmpty()){
+            Arbol * temporal = abbComprados->desEncolar()->arbolABB;
+            matrizArbolesTerreno[granjero->posX][granjero->posY] = new NodoArbolesTerreno(temporal, NULL, NULL, "ABB");
+            matrizJuego[granjero->posX][granjero->posY] = 4;
+            cantidadArbolesABB--;
+        }else{
+            mostrarMensaje("No tiene árboles disponibles debe de comprar");
+        }
+    } else{
+        mostrarMensaje("No puede sembrar un árbol en esa posición");
+    }
+}
+
+void windownuevapartida::sembrarArbolHEAP(){
+    if(matrizJuego[granjero->posX][granjero->posY] == 0 || matrizJuego[granjero->posX][granjero->posY] == -1 || matrizJuego[granjero->posX][granjero->posY] == 2){
+        if(!heapComprados->isEmpty()){
+            Heap * temporal = heapComprados->desEncolar()->arbolHeap;
+            matrizArbolesTerreno[granjero->posX][granjero->posY] = new NodoArbolesTerreno(NULL, NULL, temporal, "HEAP");
+            matrizJuego[granjero->posX][granjero->posY] = 2;
+            cantidadArbolesHeap--;
+        }else{
+            mostrarMensaje("No tiene árboles disponibles debe de comprar");
+        }
+    } else{
+        mostrarMensaje("No puede sembrar un árbol en esa posición");
+    }
+}
+
+void windownuevapartida::sembrarArbolSPLAY(){
+    if(matrizJuego[granjero->posX][granjero->posY] == 0 || matrizJuego[granjero->posX][granjero->posY] == -1 || matrizJuego[granjero->posX][granjero->posY] == 2){
+        cantitadArbolesSplay--;
+    } else{
+        mostrarMensaje("No puede sembrar un árbol en esa posición");
+    }
+}
+
+void windownuevapartida::colocarEspantapajaros(){
+    if(matrizJuego[granjero->posX][granjero->posY] == 0){
+        if(cantidadEspantapajaros > 0){
+            matrizJuego[granjero->posX][granjero->posY] = 6;
+            cantidadEspantapajaros--;
+        }
+    }else{
+        mostrarMensaje("No puede colocar el espantapajaros en esa posición por que está ocupado por otro objeto");
+    }
+}
+
+void windownuevapartida::on_toolButton_7_clicked()
+{
+    if(mercadoPlataforma->estado){
+        if(cantidadEspantapajaros < infoEspantapajaros->cantidadPorTerreno){
+            cantidadEspantapajaros++;
+        }else{
+            mostrarMensaje("Ya no puede comprar más espantapajaros");
+        }
+    }else{
+        mostrarMensaje("El mercado no está abierto. Tiene que esperar a que abra para poder realizar su compra");
+    }
+}
+
+void windownuevapartida::mostrarMensaje(QString mensaje){
+    QMessageBox * msgBox = new QMessageBox();
+    msgBox->setText(mensaje);
+    msgBox->show();
+    msgBox->setAttribute(Qt::WA_DeleteOnClose);
+    QTimer::singleShot(2000, msgBox, SLOT(close()));
 }

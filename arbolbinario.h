@@ -4,22 +4,23 @@
 #include <cstdlib>
 #include <iostream>
 #include "estructurasTablero.h"
+#pragma once;
 
 using namespace std;
 
-struct Nodo {
+struct NodoABB {
     int precio;    
-    Nodo* hijoizquierdo;
-    Nodo* hijoderecho;
+    NodoABB* hijoizquierdo;
+    NodoABB* hijoderecho;
 
-    Nodo(int pPrecio) {
+    NodoABB(int pPrecio) {
         this->precio = pPrecio;        
         hijoizquierdo = hijoderecho = NULL;
     }
 };
 
 struct Arbol {
-    Nodo * raiz;
+    NodoABB * raiz;
     NodoInfoArbol * nodoInfoArbol;
 
     Arbol(NodoInfoArbol * pNodoInfoArbol) {
@@ -28,28 +29,28 @@ struct Arbol {
     }
 
     void insertar(int);
-    Nodo * insertar(int, Nodo *);
+    NodoABB * insertar(int, NodoABB *);
 
-    Nodo * buscarNodo(int indice);
-    Nodo * buscarNodo(int indice, Nodo *);
+    NodoABB * buscarNodo(int indice);
+    NodoABB * buscarNodo(int indice, NodoABB *);
 
-    void inOrden(Nodo *);
-    void preOrden(Nodo *);
-    void posOrden(Nodo *);
-    Nodo * buscar(int, Nodo *);
+    void inOrden(NodoABB *);
+    void preOrden(NodoABB *);
+    void posOrden(NodoABB *);
+    NodoABB * buscar(int, NodoABB *);
 
-    int obtenerNumeroElementos(Nodo *);
-    int peso(Nodo *);
-    int obtenerAltura(Nodo *);
-    Nodo * mayor(Nodo * arbol);
-    Nodo * borrarElemento(int);
-    Nodo * borrarElemento(int, Nodo*);
-    void anchura(Nodo *);
-    int altura(Nodo *);
-    int cantHojas(Nodo *);
-    int cantNodos2(Nodo *);
-    void nodos_nivel(Nodo *, int, int);
-    int contadorNodos(Nodo *);
+    int obtenerNumeroElementos(NodoABB *);
+    int peso(NodoABB *);
+    int obtenerAltura(NodoABB *);
+    NodoABB * mayor(NodoABB * arbol);
+    NodoABB * borrarElemento(int);
+    NodoABB * borrarElemento(int, NodoABB*);
+    void anchura(NodoABB *);
+    int altura(NodoABB *);
+    int cantHojas(NodoABB *);
+    int cantNodos2(NodoABB *);
+    void nodos_nivel(NodoABB *, int, int);
+    int contadorNodos(NodoABB *);
 };
 
 #endif // ARBOLBINARIO_H

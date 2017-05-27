@@ -13,13 +13,17 @@ void MercadoPlataforma::run(){
                 if(!this->estado){
                     break;
                 }
-                this->sleep(this->mercado->tiempoAbierto * 60);
-                this->estado = false;
+                if(this->mercado->tiempoAbierto != 0){
+                    this->sleep(this->mercado->tiempoAbierto);//Esta por segundo, agregarle *60
+                    this->estado = false;
+                }
                 mutex.unlock();
             }
             mutex.lock();
-            this->sleep(this->mercado->tiempoAbre * 60);
-            this->estado = true;
+            if(this->mercado->tiempoAbre != 0){
+                this->sleep(this->mercado->tiempoAbre);//Está por segundos, agregarle *60
+                this->estado = true;
+            }
             mutex.unlock();
         }
     }

@@ -9,13 +9,13 @@ void Arbol::insertar(int dato) {
 
 //  INSERTA RECURSIVAMENTE
 
-Nodo * Arbol::insertar(int valor, Nodo* nodo) {
+NodoABB * Arbol::insertar(int valor, NodoABB* nodo) {
     // cuando el nodo es nulo, raiz o hijos de hojas
     //quiere decir que allí debe
     // ubicar el valor, en un nuevo nodo
 
     if (nodo == NULL) {
-        return new Nodo(valor);
+        return new NodoABB(valor);
     }
     //si el valor es mayor,
     //llama recursivamente a insertar en el hijo
@@ -29,7 +29,7 @@ Nodo * Arbol::insertar(int valor, Nodo* nodo) {
     return nodo;
 }
 
-void Arbol::inOrden(Nodo* nodo) {
+void Arbol::inOrden(NodoABB* nodo) {
     if (nodo != NULL) {
         inOrden(nodo->hijoizquierdo);
         cout << nodo->precio << "  ";
@@ -37,7 +37,7 @@ void Arbol::inOrden(Nodo* nodo) {
     }
 }
 
-void Arbol::preOrden(Nodo* nodo) {
+void Arbol::preOrden(NodoABB* nodo) {
     if (nodo != NULL) {
         cout << nodo->precio << "  ";
         preOrden(nodo->hijoizquierdo);
@@ -45,7 +45,7 @@ void Arbol::preOrden(Nodo* nodo) {
     }
 }
 
-void Arbol::posOrden(Nodo* nodo) {
+void Arbol::posOrden(NodoABB* nodo) {
     if (nodo != NULL) {
         posOrden(nodo->hijoizquierdo);
         posOrden(nodo->hijoderecho);
@@ -54,7 +54,7 @@ void Arbol::posOrden(Nodo* nodo) {
     }
 }
 
-int Arbol::contadorNodos(Nodo* nodo) {
+int Arbol::contadorNodos(NodoABB* nodo) {
     if (nodo == NULL)
         return 0;
     else
@@ -64,7 +64,7 @@ int Arbol::contadorNodos(Nodo* nodo) {
 
 // BUSCA UN VALOR EN EL ARBOL ORDENADO
 
-Nodo* Arbol::buscar(int valor, Nodo* nodo) {
+NodoABB* Arbol::buscar(int valor, NodoABB* nodo) {
     // cuando el nodo es nulo, quiere decir que allí debe
     // ubicar el valor, en un nuevo nodo
     if (nodo == NULL) {
@@ -82,11 +82,11 @@ Nodo* Arbol::buscar(int valor, Nodo* nodo) {
     }
 }
 
-Nodo * Arbol::buscarNodo(int indice) {
+NodoABB * Arbol::buscarNodo(int indice) {
     return buscarNodo(indice, raiz);
 }
 
-Nodo * Arbol::buscarNodo(int indice, Nodo* nodo) {
+NodoABB * Arbol::buscarNodo(int indice, NodoABB* nodo) {
     // cuando el nodo es nulo, quiere decir que allí debe
     // ubicar el valor, en un nuevo nodo
     if (nodo == NULL) {
@@ -107,7 +107,7 @@ Nodo * Arbol::buscarNodo(int indice, Nodo* nodo) {
 
 // cantidad de elementos de un arbol binario
 
-int Arbol::obtenerNumeroElementos(Nodo* nodo) {
+int Arbol::obtenerNumeroElementos(NodoABB* nodo) {
     int num_elems = 0;
 
     if (nodo != NULL) {
@@ -126,14 +126,14 @@ int Arbol::obtenerNumeroElementos(Nodo* nodo) {
 //podemos hablar de altura de ramas; el máximo número de nodos
 //que hay que recorrer para llegar de la raíz a una de las hojas.
 
-int Arbol::obtenerAltura(Nodo* nodo) {
+int Arbol::obtenerAltura(NodoABB* nodo) {
 
     // resultado
     int altura = 0;
 
     // referencias hi e hd
-    Nodo* ref_h_izq;
-    Nodo* ref_h_der;
+    NodoABB* ref_h_izq;
+    NodoABB* ref_h_der;
 
     // resultado de alturas de hi e hd
     int altura_r_izq = 0;
@@ -181,21 +181,21 @@ int maximo(int a, int b) {
     else return b;
 }
 
-int Arbol::altura(Nodo* nodo) {
+int Arbol::altura(NodoABB* nodo) {
     if (nodo == NULL)
         return -1;
     else
         return 1 + maximo(altura(nodo->hijoizquierdo), altura(nodo->hijoderecho));
 }
 
-int Arbol::cantNodos2(Nodo* nodo) {
+int Arbol::cantNodos2(NodoABB* nodo) {
     if (nodo == NULL)
         return 0;
     else
         return 1 + cantNodos2(nodo->hijoizquierdo) + cantNodos2(nodo->hijoderecho);
 }
 
-int Arbol::cantHojas(Nodo* raiz) {
+int Arbol::cantHojas(NodoABB* raiz) {
     if (raiz == NULL)
         return 0;
     else if (raiz->hijoderecho == NULL && raiz->hijoizquierdo == NULL)
@@ -206,7 +206,7 @@ int Arbol::cantHojas(Nodo* raiz) {
 
 // borrar
 
-Nodo* Arbol::mayor(Nodo* arbol) {
+NodoABB* Arbol::mayor(NodoABB* arbol) {
     if (arbol == NULL)
         return NULL;
     else if (arbol->hijoderecho == NULL)
@@ -215,12 +215,12 @@ Nodo* Arbol::mayor(Nodo* arbol) {
         return mayor(arbol->hijoderecho);
 }
 
-Nodo* Arbol::borrarElemento(int ele) {
+NodoABB* Arbol::borrarElemento(int ele) {
     raiz = borrarElemento(ele, raiz);
     return raiz;
 }
 
-Nodo* Arbol::borrarElemento(int ele, Nodo* arbol) {
+NodoABB* Arbol::borrarElemento(int ele, NodoABB* arbol) {
     if (arbol == NULL) {
         return NULL;
     } else if (ele < arbol->precio)
@@ -234,7 +234,7 @@ Nodo* Arbol::borrarElemento(int ele, Nodo* arbol) {
     else if (arbol->hijoderecho == NULL)
         arbol = arbol->hijoizquierdo;
     else {
-        Nodo* max = mayor(arbol->hijoizquierdo); // mayor de los menores
+        NodoABB* max = mayor(arbol->hijoizquierdo); // mayor de los menores
         arbol->hijoizquierdo = borrarElemento(max->precio, arbol->hijoizquierdo);
         arbol->precio = max->precio;
     }

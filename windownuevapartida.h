@@ -9,6 +9,11 @@
 #include "ui_windownuevapartida.h"
 #include <string>
 #include <QKeyEvent>
+#include "arbolescomprados.h"
+#include <QMessageBox>
+#include "avl.h"
+#include "arbolbinario.h"
+#include "heap.h"
 
 namespace Ui {
 class windownuevapartida;
@@ -28,6 +33,16 @@ private slots:
     void on_tipoArboles_currentIndexChanged(const QString &arg1);
     void keyPressEvent(QKeyEvent *);
 
+    void on_toolButton_3_clicked();
+
+    void on_toolButton_6_clicked();
+
+    void on_toolButton_4_clicked();
+
+    void on_toolButton_5_clicked();
+
+    void on_toolButton_7_clicked();
+
 private:
     Ui::windownuevapartida *ui;
 
@@ -36,8 +51,21 @@ private:
 
     Mercado * infoMercado;
     Espantapajaros * infoEspantapajaros;
-    Granjero * granjero;
+    Granjero * granjero;    
     MercadoPlataforma * mercadoPlataforma;
+
+    ColaAVLComprados * avlComprados;
+    ColaABBComprados * abbComprados;
+    ColaHeapComprados * heapComprados;
+
+
+    NodoArbolesTerreno * matrizArbolesTerreno[8][8];
+    plaga * matrizPlagas[8][8];
+
+    int cantidadArbolesABB;
+    int cantidadArbolesAVL;
+    int cantitadArbolesSplay;
+    int cantidadArbolesHeap;
 
     QTimer * timer;
     int tipoPlaga;
@@ -49,6 +77,19 @@ private:
     void datosMercado(void);
     void pintarTablero(void);
     void estadoMercado(void);
+
+    void comprarAbolAVL(void);
+    void comprarAbolABB(void);
+    void comprarAbolHeap(void);
+    void comprarAbolSplay(void);
+
+    void sembrarArbolAVL(void);
+    void sembrarArbolABB(void);
+    void sembrarArbolHEAP(void);
+    void sembrarArbolSPLAY(void);
+
+    void colocarEspantapajaros(void);
+    void mostrarMensaje(QString);
 };
 
 #endif // WINDOWNUEVAPARTIDA_H

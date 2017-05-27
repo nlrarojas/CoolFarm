@@ -3,13 +3,13 @@
 #include <QtCore>
 #include "estructurasTablero.h"
 
-struct Nodo{
+struct NodoAVL{
     int dato;
-    Nodo* hijoizquierdo;
-    Nodo* hijoderecho;
+    NodoAVL* hijoizquierdo;
+    NodoAVL* hijoderecho;
     int balance;
 
-    Nodo(int d){
+    NodoAVL(int d){
         dato = d;
         hijoizquierdo = hijoderecho = NULL;
         balance = 0;
@@ -18,20 +18,20 @@ struct Nodo{
 
 struct Avl
 {
-    Nodo *raiz;
+    NodoAVL *raiz;
     NodoInfoArbol * nodoInfoArbol;
 
     Avl(NodoInfoArbol *);
 
     void insertar(int);
-    Nodo* insertar(int, Nodo*);
-    void sacarBalance(Nodo*);
+    NodoAVL* insertar(int, NodoAVL*);
+    void sacarBalance(NodoAVL*);
     int maximo(int , int);
-    int altura(Nodo*);
-    void imprimir(Nodo*);
-    void imprimirNivel(Nodo *, int , int);
-    void balancear(Nodo*, Nodo*);
-    Nodo* balancear(Nodo*, int, int);
+    int altura(NodoAVL*);
+    void imprimir(NodoAVL*);
+    void imprimirNivel(NodoAVL *, int , int);
+    void balancear(NodoAVL*, NodoAVL*);
+    NodoAVL* balancear(NodoAVL*, int, int);
 };
 
 #endif // AVL_H

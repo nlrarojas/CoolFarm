@@ -37,7 +37,8 @@ HEADERS  += mainwindow.h \
     heap.h \
     estructurasTablero.h \
     arbolbinario.h \
-    mercadoplataforma.h
+    mercadoplataforma.h \
+    arbolescomprados.h
 
 FORMS    += mainwindow.ui \
     windownuevapartida.ui

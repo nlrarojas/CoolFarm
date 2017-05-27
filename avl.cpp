@@ -20,9 +20,9 @@ void Avl::insertar(int dato){
 }
 
 
-Nodo* Avl::insertar(int valor, Nodo* nodo){
+NodoAVL* Avl::insertar(int valor, NodoAVL* nodo){
     if (nodo == NULL)
-        return new Nodo(valor);
+        return new NodoAVL(valor);
     else if (nodo->dato < valor){
         nodo->hijoderecho = insertar(valor, nodo->hijoderecho);
     }
@@ -40,14 +40,14 @@ int Avl::maximo (int a, int b)
     return b;
 }
 
-int Avl::altura (Nodo* nodo)
+int Avl::altura (NodoAVL* nodo)
 {
     if (nodo == NULL)
         return -1;
     return 1 + maximo(altura(nodo->hijoizquierdo),altura(nodo->hijoderecho));
 }
 
-void Avl::imprimir(Nodo* nodo){
+void Avl::imprimir(NodoAVL* nodo){
     int nivel = altura(nodo)+2;
     for (int i=1; i< nivel; i++)
     {
@@ -58,7 +58,7 @@ void Avl::imprimir(Nodo* nodo){
     }
 }
 
-void Avl::imprimirNivel(Nodo* nodo, int nivel, int cont){
+void Avl::imprimirNivel(NodoAVL* nodo, int nivel, int cont){
     if (nodo != NULL){
         if (nivel == cont)
             cout << nodo->dato << " ";
@@ -69,7 +69,7 @@ void Avl::imprimirNivel(Nodo* nodo, int nivel, int cont){
 }
 
 
-void Avl::balancear(Nodo* padre, Nodo* nodo){
+void Avl::balancear(NodoAVL* padre, NodoAVL* nodo){
     if (nodo!= NULL){
         sacarBalance(nodo);
         if (nodo->balance < -1){
@@ -101,12 +101,12 @@ void Avl::balancear(Nodo* padre, Nodo* nodo){
     }
 }
 
-Nodo* Avl::balancear(Nodo* nodo, int factor1, int factor2){
+NodoAVL* Avl::balancear(NodoAVL* nodo, int factor1, int factor2){
     if (factor1 == -2){
         if (factor2 == 1){//Rotacion Doble
             int valor = nodo->dato;
             nodo->dato = nodo->hijoizquierdo->hijoderecho->dato;
-            nodo->hijoderecho = new Nodo(valor);
+            nodo->hijoderecho = new NodoAVL(valor);
             nodo->hijoizquierdo->hijoderecho = NULL;
             return nodo;
         }
@@ -114,10 +114,10 @@ Nodo* Avl::balancear(Nodo* nodo, int factor1, int factor2){
             if (nodo->hijoizquierdo->hijoderecho == NULL){
                 int valor = nodo->dato;
                 nodo = nodo->hijoizquierdo;
-                nodo->hijoderecho = new Nodo(valor);
+                nodo->hijoderecho = new NodoAVL(valor);
                 return nodo;
             }
-            Nodo *tmp = nodo->hijoizquierdo;
+            NodoAVL *tmp = nodo->hijoizquierdo;
             nodo->hijoizquierdo = nodo->hijoizquierdo->hijoderecho;
             tmp->hijoderecho = nodo;
             return tmp;
@@ -127,7 +127,7 @@ Nodo* Avl::balancear(Nodo* nodo, int factor1, int factor2){
         if (factor2 == -1){//Rotacion Doble
             int valor = nodo->dato;
             nodo->dato = nodo->hijoderecho->hijoizquierdo->dato;
-            nodo->hijoizquierdo = new Nodo(valor);
+            nodo->hijoizquierdo = new NodoAVL(valor);
             nodo->hijoderecho->hijoizquierdo = NULL;
             return nodo;
         }
@@ -135,10 +135,10 @@ Nodo* Avl::balancear(Nodo* nodo, int factor1, int factor2){
             if (nodo->hijoderecho->hijoizquierdo == NULL){
                 int valor = nodo->dato;
                 nodo = nodo->hijoderecho;
-                nodo->hijoizquierdo = new Nodo(valor);
+                nodo->hijoizquierdo = new NodoAVL(valor);
                 return nodo;
             }
-            Nodo *tmp = nodo->hijoderecho;
+            NodoAVL *tmp = nodo->hijoderecho;
             nodo->hijoderecho = nodo->hijoderecho->hijoizquierdo;
             tmp->hijoizquierdo = nodo;
             return tmp;
@@ -146,7 +146,7 @@ Nodo* Avl::balancear(Nodo* nodo, int factor1, int factor2){
     }
 }
 
-void Avl::sacarBalance(Nodo* nodo){
+void Avl::sacarBalance(NodoAVL* nodo){
     if (nodo != NULL)
         nodo->balance = (altura(nodo->hijoderecho)-altura(nodo->hijoizquierdo));
 }
