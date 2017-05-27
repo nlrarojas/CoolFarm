@@ -29,7 +29,9 @@ SOURCES += main.cpp\
     avl.cpp \
     heap.cpp \
     arbolbinario.cpp \
-    mercadoplataforma.cpp
+    mercadoplataforma.cpp \
+    hiloabb.cpp \
+    hiloplagas.cpp
 
 HEADERS  += mainwindow.h \
     windownuevapartida.h \
@@ -38,7 +40,9 @@ HEADERS  += mainwindow.h \
     estructurasTablero.h \
     arbolbinario.h \
     mercadoplataforma.h \
-    arbolescomprados.h
+    arbolescomprados.h \
+    hiloabb.h \
+    hiloplagas.h
 
 FORMS    += mainwindow.ui \
     windownuevapartida.ui

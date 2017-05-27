@@ -72,6 +72,7 @@ private:
     int tipoArbol;
     int cantidadEspantapajaros;
     int matrizJuego[8][8];
+    int estado[8][8];
     QLabel * terreno[8][8];
 
     void datosMercado(void);

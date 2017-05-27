@@ -389,6 +389,7 @@ void windownuevapartida::sembrarArbolAVL(){
             Avl * temporal = avlComprados->desEncolar()->arbolAVL;
             matrizArbolesTerreno[granjero->posX][granjero->posY] = new NodoArbolesTerreno(NULL, temporal, NULL, "AVL");
             matrizJuego[granjero->posX][granjero->posY] = 3;
+            estado[granjero->posX][granjero->posY] += 2; 
             cantidadArbolesAVL--;
         }else{
             mostrarMensaje("No tiene árboles disponibles debe de comprar");
@@ -404,6 +405,7 @@ void windownuevapartida::sembrarArbolABB(){
             Arbol * temporal = abbComprados->desEncolar()->arbolABB;
             matrizArbolesTerreno[granjero->posX][granjero->posY] = new NodoArbolesTerreno(temporal, NULL, NULL, "ABB");
             matrizJuego[granjero->posX][granjero->posY] = 4;
+            estado[granjero->posX][granjero->posY] += 2;
             cantidadArbolesABB--;
         }else{
             mostrarMensaje("No tiene árboles disponibles debe de comprar");
@@ -419,6 +421,7 @@ void windownuevapartida::sembrarArbolHEAP(){
             Heap * temporal = heapComprados->desEncolar()->arbolHeap;
             matrizArbolesTerreno[granjero->posX][granjero->posY] = new NodoArbolesTerreno(NULL, NULL, temporal, "HEAP");
             matrizJuego[granjero->posX][granjero->posY] = 2;
+            estado[granjero->posX][granjero->posY] += 2;
             cantidadArbolesHeap--;
         }else{
             mostrarMensaje("No tiene árboles disponibles debe de comprar");
@@ -431,6 +434,7 @@ void windownuevapartida::sembrarArbolHEAP(){
 void windownuevapartida::sembrarArbolSPLAY(){
     if(matrizJuego[granjero->posX][granjero->posY] == 0 || matrizJuego[granjero->posX][granjero->posY] == -1 || matrizJuego[granjero->posX][granjero->posY] == 2){
         cantitadArbolesSplay--;
+        estado[granjero->posX][granjero->posY] += 2;
     } else{
         mostrarMensaje("No puede sembrar un árbol en esa posición");
     }
