@@ -15,7 +15,7 @@ void HiloABB::run(){
                 break;
             }
             if(crecio){
-                //ABB es un 4 en la matriz de del juego
+                //ABB es un 4 en la matriz del juego
                 for (int i = 0; i < 8; i++) {
                     for (int j = 0; j < 8; j++) {
                         if(matrizJuego[i][j] == 4){
@@ -36,7 +36,7 @@ void HiloABB::run(){
 int HiloABB::aleatorio(){
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> dis(0, 100);
+    uniform_int_distribution<> dis(nodoArbol->rangoInferior, nodoArbol->rangoSuperior);
     int random = dis(gen);
     return random;
 }

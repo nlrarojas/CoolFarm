@@ -5,6 +5,7 @@
 #include "arbolbinario.h"
 #include "avl.h"
 #include "heap.h"
+#include <QDebug>
 
 using namespace std;
 
@@ -82,6 +83,7 @@ struct NodoArbolABB{
 
     NodoArbolABB(Arbol * nuevoArbol){
         this->arbolABB = nuevoArbol;
+        this->siguiente = NULL;
     }
 };
 
