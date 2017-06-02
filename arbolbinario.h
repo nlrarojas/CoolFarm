@@ -22,10 +22,14 @@ struct NodoABB {
 struct Arbol {
     NodoABB * raiz;
     NodoInfoArbol * nodoInfoArbol;
+    int vendidos;
+    int perdidos;
 
     Arbol(NodoInfoArbol * pNodoInfoArbol) {
         this->nodoInfoArbol = pNodoInfoArbol;
         raiz = NULL;
+        this->vendidos = 0;
+        this->perdidos = 0;
     }
 
     void insertar(int);
@@ -51,6 +55,9 @@ struct Arbol {
     int cantNodos2(NodoABB *);
     void nodos_nivel(NodoABB *, int, int);
     int contadorNodos(NodoABB *);
+
+    int cantidadFrutos(void);
+    int montoTotal(void);
 };
 
 #endif // ARBOLBINARIO_H

@@ -11,6 +11,8 @@ Avl::Avl(NodoInfoArbol * pNodoInfoArbol)
 {
     this->raiz = NULL;
     this->nodoInfoArbol = pNodoInfoArbol;
+    this->vendidos = 0;
+    this->perdidos = 0;
 }
 
 
@@ -149,4 +151,19 @@ NodoAVL* Avl::balancear(NodoAVL* nodo, int factor1, int factor2){
 void Avl::sacarBalance(NodoAVL* nodo){
     if (nodo != NULL)
         nodo->balance = (altura(nodo->hijoderecho)-altura(nodo->hijoizquierdo));
+}
+
+int Avl::cantidadFrutos(){
+    return contadorNodos(raiz);
+}
+
+int Avl::contadorNodos(NodoAVL* nodo) {
+    if (nodo == NULL)
+        return 0;
+    else
+        return 1 + contadorNodos(nodo->hijoderecho) + contadorNodos(nodo->hijoizquierdo);
+}
+
+int Avl::montoTotal(void){
+    return cantidadFrutos()*this->nodoInfoArbol->precio;
 }

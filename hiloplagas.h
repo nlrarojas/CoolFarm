@@ -7,6 +7,8 @@
 #include "arbolescomprados.h"
 #include "estructurasTablero.h"
 
+using namespace std;
+
 class HiloPlagas : public QThread
 {
 private:

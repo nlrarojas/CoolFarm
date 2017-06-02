@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>650</height>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="juego">
      <attribute name="title">
@@ -65,7 +65,7 @@
      <widget class="QToolButton" name="toolButton_2">
       <property name="geometry">
        <rect>
-        <x>170</x>
+        <x>320</x>
         <y>520</y>
         <width>131</width>
         <height>51</height>
@@ -73,6 +73,19 @@
       </property>
       <property name="text">
        <string>Guardar Juego</string>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="toolButton_8">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>520</y>
+        <width>131</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Reanudar Juego</string>
       </property>
      </widget>
     </widget>
@@ -686,8 +699,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_cantidad_AVL">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>80</y>
+        <x>480</x>
+        <y>100</y>
         <width>131</width>
         <height>16</height>
        </rect>
@@ -699,8 +712,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>100</y>
+        <x>460</x>
+        <y>120</y>
         <width>70</width>
         <height>102</height>
        </rect>
@@ -718,8 +731,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QToolButton" name="toolButton_3">
       <property name="geometry">
        <rect>
-        <x>370</x>
-        <y>170</y>
+        <x>480</x>
+        <y>280</y>
         <width>51</width>
         <height>31</height>
        </rect>
@@ -731,8 +744,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_13">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>270</y>
+        <x>140</x>
+        <y>120</y>
         <width>100</width>
         <height>100</height>
        </rect>
@@ -750,8 +763,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QToolButton" name="toolButton_4">
       <property name="geometry">
        <rect>
-        <x>370</x>
-        <y>330</y>
+        <x>180</x>
+        <y>280</y>
         <width>51</width>
         <height>31</height>
        </rect>
@@ -763,8 +776,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_15">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>100</y>
+        <x>290</x>
+        <y>130</y>
         <width>102</width>
         <height>75</height>
        </rect>
@@ -782,8 +795,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QToolButton" name="toolButton_5">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>340</y>
+        <x>50</x>
+        <y>280</y>
         <width>51</width>
         <height>31</height>
        </rect>
@@ -795,8 +808,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_cantidad_ABB">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>260</y>
+        <x>30</x>
+        <y>100</y>
         <width>181</width>
         <height>16</height>
        </rect>
@@ -808,8 +821,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_17">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>290</y>
+        <x>0</x>
+        <y>130</y>
         <width>103</width>
         <height>68</height>
        </rect>
@@ -827,8 +840,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QToolButton" name="toolButton_6">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>180</y>
+        <x>340</x>
+        <y>280</y>
         <width>51</width>
         <height>31</height>
        </rect>
@@ -840,8 +853,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_cantidad_SPLAY">
       <property name="geometry">
        <rect>
-        <x>560</x>
-        <y>70</y>
+        <x>320</x>
+        <y>100</y>
         <width>171</width>
         <height>16</height>
        </rect>
@@ -853,8 +866,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_19">
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>440</y>
+        <x>600</x>
+        <y>90</y>
         <width>81</width>
         <height>16</height>
        </rect>
@@ -866,8 +879,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QToolButton" name="toolButton_7">
       <property name="geometry">
        <rect>
-        <x>550</x>
-        <y>520</y>
+        <x>650</x>
+        <y>280</y>
         <width>51</width>
         <height>31</height>
        </rect>
@@ -879,8 +892,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_20">
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>460</y>
+        <x>600</x>
+        <y>110</y>
         <width>66</width>
         <height>77</height>
        </rect>
@@ -934,8 +947,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_27">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>110</y>
+        <x>440</x>
+        <y>220</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -947,8 +960,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_28">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>140</y>
+        <x>440</x>
+        <y>250</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -960,8 +973,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLineEdit" name="lineEdit_costo_avl">
       <property name="geometry">
        <rect>
-        <x>370</x>
-        <y>110</y>
+        <x>480</x>
+        <y>220</y>
         <width>51</width>
         <height>20</height>
        </rect>
@@ -973,8 +986,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLineEdit" name="lineEdit_crece_avl">
       <property name="geometry">
        <rect>
-        <x>370</x>
-        <y>140</y>
+        <x>480</x>
+        <y>250</y>
         <width>51</width>
         <height>20</height>
        </rect>
@@ -986,8 +999,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLineEdit" name="lineEdit_costo_rojinegro">
       <property name="geometry">
        <rect>
-        <x>680</x>
-        <y>110</y>
+        <x>340</x>
+        <y>220</y>
         <width>51</width>
         <height>20</height>
        </rect>
@@ -999,8 +1012,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_29">
       <property name="geometry">
        <rect>
-        <x>640</x>
-        <y>110</y>
+        <x>300</x>
+        <y>220</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -1012,8 +1025,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_30">
       <property name="geometry">
        <rect>
-        <x>640</x>
-        <y>140</y>
+        <x>300</x>
+        <y>250</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -1025,8 +1038,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLineEdit" name="lineEdit_crece_rojinegro">
       <property name="geometry">
        <rect>
-        <x>680</x>
-        <y>140</y>
+        <x>340</x>
+        <y>250</y>
         <width>51</width>
         <height>20</height>
        </rect>
@@ -1038,8 +1051,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLineEdit" name="lineEdit_costo_heap">
       <property name="geometry">
        <rect>
-        <x>370</x>
-        <y>270</y>
+        <x>180</x>
+        <y>220</y>
         <width>51</width>
         <height>20</height>
        </rect>
@@ -1051,8 +1064,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_31">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>270</y>
+        <x>140</x>
+        <y>220</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -1064,8 +1077,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_32">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>300</y>
+        <x>140</x>
+        <y>250</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -1077,8 +1090,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLineEdit" name="lineEdit_crece_heap">
       <property name="geometry">
        <rect>
-        <x>370</x>
-        <y>300</y>
+        <x>180</x>
+        <y>250</y>
         <width>51</width>
         <height>20</height>
        </rect>
@@ -1090,8 +1103,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLineEdit" name="lineEdit_crece_abb">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>310</y>
+        <x>50</x>
+        <y>250</y>
         <width>51</width>
         <height>20</height>
        </rect>
@@ -1103,8 +1116,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_33">
       <property name="geometry">
        <rect>
-        <x>630</x>
-        <y>280</y>
+        <x>10</x>
+        <y>220</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -1116,8 +1129,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLineEdit" name="lineEdit_costo_abb">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>280</y>
+        <x>50</x>
+        <y>220</y>
         <width>51</width>
         <height>20</height>
        </rect>
@@ -1129,8 +1142,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_34">
       <property name="geometry">
        <rect>
-        <x>630</x>
-        <y>310</y>
+        <x>10</x>
+        <y>250</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -1142,8 +1155,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_35">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>460</y>
+        <x>600</x>
+        <y>220</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -1155,8 +1168,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLineEdit" name="lineEdit_costo_espantapajaros">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>460</y>
+        <x>650</x>
+        <y>220</y>
         <width>51</width>
         <height>20</height>
        </rect>
@@ -1168,8 +1181,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_cantidad_espantapajaros">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>490</y>
+        <x>600</x>
+        <y>250</y>
         <width>91</width>
         <height>16</height>
        </rect>
@@ -1181,8 +1194,8 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_cantidad_HEAP">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>250</y>
+        <x>190</x>
+        <y>100</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -1191,6 +1204,170 @@ font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
        <string>HEAP</string>
       </property>
      </widget>
+     <widget class="QTableWidget" name="tablaArbolesComprados">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>350</y>
+        <width>621</width>
+        <height>241</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>Árbol</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Ubicación</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Cant Frutos</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Monto total</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Vendidos</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Perdidos</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>480</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vender</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>520</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vender todo</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_dinero">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>50</y>
+        <width>151</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Dinero:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_cantidad_frutos_vender">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>400</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_vender_frutos">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>430</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vender Frutos</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>380</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Cantidad Frutos</string>
+      </property>
+     </widget>
+     <zorder>label_10</zorder>
+     <zorder>label_cantidad_AVL</zorder>
+     <zorder>label_12</zorder>
+     <zorder>toolButton_3</zorder>
+     <zorder>label_13</zorder>
+     <zorder>toolButton_4</zorder>
+     <zorder>label_15</zorder>
+     <zorder>toolButton_5</zorder>
+     <zorder>label_cantidad_ABB</zorder>
+     <zorder>label_17</zorder>
+     <zorder>toolButton_6</zorder>
+     <zorder>label_cantidad_SPLAY</zorder>
+     <zorder>label_19</zorder>
+     <zorder>toolButton_7</zorder>
+     <zorder>label_20</zorder>
+     <zorder>label_21</zorder>
+     <zorder>label_estado_mercado</zorder>
+     <zorder>label_27</zorder>
+     <zorder>label_28</zorder>
+     <zorder>lineEdit_crece_avl</zorder>
+     <zorder>lineEdit_costo_rojinegro</zorder>
+     <zorder>label_29</zorder>
+     <zorder>label_30</zorder>
+     <zorder>lineEdit_crece_rojinegro</zorder>
+     <zorder>lineEdit_costo_heap</zorder>
+     <zorder>label_31</zorder>
+     <zorder>label_32</zorder>
+     <zorder>lineEdit_crece_heap</zorder>
+     <zorder>lineEdit_crece_abb</zorder>
+     <zorder>label_33</zorder>
+     <zorder>lineEdit_costo_abb</zorder>
+     <zorder>label_34</zorder>
+     <zorder>label_35</zorder>
+     <zorder>lineEdit_costo_espantapajaros</zorder>
+     <zorder>label_cantidad_espantapajaros</zorder>
+     <zorder>label_cantidad_HEAP</zorder>
+     <zorder>tablaArbolesComprados</zorder>
+     <zorder>pushButton</zorder>
+     <zorder>pushButton_2</zorder>
+     <zorder>lineEdit_costo_avl</zorder>
+     <zorder>label_dinero</zorder>
+     <zorder>lineEdit_cantidad_frutos_vender</zorder>
+     <zorder>pushButton_vender_frutos</zorder>
+     <zorder>label_11</zorder>
     </widget>
    </widget>
   </widget>

@@ -12,6 +12,8 @@ Heap::Heap(NodoInfoArbol * pNodoInfoArbol)
     this->arbol = NULL;
     this->largo = 0;
     this->nodoInfoArbol = pNodoInfoArbol;
+    this->vendidos = 0;
+    this->perdidos = 0;
 }
 
 void Heap::insertar(int dato)
@@ -104,3 +106,10 @@ int Heap::maximo (int a, int b)
     return 2;
 }
 
+int Heap::cantidadFrutos(){
+    return this->largo;
+}
+
+int Heap::montoTotal(void){
+    return cantidadFrutos()*this->nodoInfoArbol->precio;
+}

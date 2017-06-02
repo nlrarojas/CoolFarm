@@ -97,6 +97,8 @@ private:
 
     void insertarEnTablaArboles(void);
     void actualizarTablaArboles(void);
+    
+    ControladorHilos * controlador;
 };
 
 #endif // WINDOWNUEVAPARTIDA_H

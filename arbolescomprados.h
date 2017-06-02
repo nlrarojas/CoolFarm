@@ -14,15 +14,48 @@ struct NodoArbolesTerreno{
     Arbol * abb;
     Avl * avl;
     Heap * heap;
+    Arbol * rojinegro;
     QString tipoArbol;
-    //Falta splay
+    int posX;
+    int posY;
 
-    NodoArbolesTerreno(Arbol * pAbb, Avl * pAvl, Heap * pHeap, QString pTipoArbol){
+
+    NodoArbolesTerreno(Arbol * pAbb, Avl * pAvl, Heap * pHeap, Arbol * pRojiNegro, QString pTipoArbol){
         this->abb = pAbb;
         this->avl = pAvl;
         this->heap = pHeap;
+        this->rojinegro = pRojiNegro;
         this->tipoArbol = pTipoArbol;
         this->siguiente = NULL;
+        this->posX = 0;
+        this->posY = 0;
+    }
+};
+
+struct ListaNodosArbolesTerreno{
+    NodoArbolesTerreno * primerNodo;
+
+    ListaNodosArbolesTerreno(){
+        primerNodo = NULL;
+    }
+
+    void insertar(NodoArbolesTerreno * nuevoNodo){
+        if(primerNodo == NULL){
+            primerNodo = nuevoNodo;
+        }else{
+            nuevoNodo->siguiente = primerNodo;
+            primerNodo = nuevoNodo;
+        }
+    }
+
+    int cantidadNodos(void){
+        NodoArbolesTerreno * temporal = primerNodo;
+        int cantidad = 0;
+        while(temporal != NULL){
+            cantidad++;
+            temporal = temporal->siguiente;
+        }
+        return cantidad;
     }
 };
 

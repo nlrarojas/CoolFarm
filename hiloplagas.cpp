@@ -4,3 +4,7 @@ HiloPlagas::HiloPlagas()
 {
 
 }
+
+void HiloPlagas::run(){
+
+}

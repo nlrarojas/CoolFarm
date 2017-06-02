@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     arbolbinario.cpp \
     mercadoplataforma.cpp \
     hiloabb.cpp \
-    hiloplagas.cpp
+    hiloplagas.cpp \
+    controladorhilos.cpp
 
 HEADERS  += mainwindow.h \
     windownuevapartida.h \
@@ -42,7 +43,8 @@ HEADERS  += mainwindow.h \
     mercadoplataforma.h \
     arbolescomprados.h \
     hiloabb.h \
-    hiloplagas.h
+    hiloplagas.h \
+    controladorhilos.h
 
 FORMS    += mainwindow.ui \
     windownuevapartida.ui

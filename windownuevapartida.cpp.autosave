@@ -72,6 +72,8 @@ windownuevapartida::windownuevapartida(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(actualizarDatosGUI()));
     timer->start(250);
     mercadoPlataforma->start();
+    
+    controlador = new ControladorHilos(matrizArbolesTerreno, matrizJuego, tiposInfoArboles->buscarTipoArbol("ABB"));
 }
 
 windownuevapartida::~windownuevapartida()

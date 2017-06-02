@@ -54,6 +54,10 @@ void Arbol::posOrden(NodoABB* nodo) {
     }
 }
 
+int Arbol::cantidadFrutos(){
+    return contadorNodos(raiz);
+}
+
 int Arbol::contadorNodos(NodoABB* nodo) {
     if (nodo == NULL)
         return 0;
@@ -239,4 +243,8 @@ NodoABB* Arbol::borrarElemento(int ele, NodoABB* arbol) {
         arbol->precio = max->precio;
     }
     return arbol;
+}
+
+int Arbol::montoTotal(void){
+    return cantidadFrutos()*this->nodoInfoArbol->precio;
 }

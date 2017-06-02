@@ -1,0 +1,30 @@
+#include "controladorhilos.h"
+
+ControladorHilos::ControladorHilos(NodoArbolesTerreno * pMatrizArbolesTerreno[8][8], int pMatrizJuego [8][8], NodoInfoArbol* pNodoArbol)
+{
+    this->hiloAbb->matrizArbolesTerreno = pMatrizArbolesTerreno;
+    this->hiloAbb->matrizJuego = pMatrizJuego;
+    this->hiloAbb->nodoArbol = pNodoArbol;
+    this->estado = 1;
+}
+
+void ControladorHilos::run(){
+    while(true){
+        mutex.lock();
+        
+        if(this->estado == 1){
+            this->hiloAbb->estado = true;
+            this->hiloAbb->start();
+        }else if(this->estado == 2){
+            this->hiloAbb->estado = false;
+        }else if(this->estado == 3){
+            this->hiloAbb->estado = true;
+        }
+        
+        mutex.unlock();
+    }
+}
+
+void ControladorHilos::cambiarEstado(int estadoNuevo){
+    this->estado = estadoNuevo;
+}

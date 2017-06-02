@@ -8,6 +8,8 @@ struct Heap
 {
     int *arbol, largo;
     NodoInfoArbol * nodoInfoArbol;
+    int vendidos;
+    int perdidos;
 
     Heap(NodoInfoArbol *);
 
@@ -15,6 +17,8 @@ struct Heap
     void imprimir();
     void eliminar();
     int maximo(int, int);
+    int cantidadFrutos(void);
+    int montoTotal(void);
 };
 
 #endif // HEAP_H

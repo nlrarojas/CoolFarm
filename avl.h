@@ -20,6 +20,8 @@ struct Avl
 {
     NodoAVL *raiz;
     NodoInfoArbol * nodoInfoArbol;
+    int vendidos;
+    int perdidos;
 
     Avl(NodoInfoArbol *);
 
@@ -32,6 +34,10 @@ struct Avl
     void imprimirNivel(NodoAVL *, int , int);
     void balancear(NodoAVL*, NodoAVL*);
     NodoAVL* balancear(NodoAVL*, int, int);
+
+    int cantidadFrutos(void);
+    int contadorNodos(NodoAVL *);
+    int montoTotal(void);
 };
 
 #endif // AVL_H
