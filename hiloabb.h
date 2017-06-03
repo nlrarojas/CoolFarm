@@ -18,8 +18,8 @@ private:
 
 public:
     HiloABB();
-    NodoArbolesTerreno * matrizArbolesTerreno[8][8];
-    int matrizJuego[8][8];
+    MatrizArboles * matrizArboles;
+    Matriz * matrizJuego;
     bool estado;
     bool crecio;
     NodoInfoArbol * nodoArbol;

@@ -1,4 +1,5 @@
 #include "windownuevapartida.h"
+#include <QStringList>
 
 windownuevapartida::windownuevapartida(QWidget *parent) :
     QMainWindow(parent),
@@ -18,8 +19,6 @@ windownuevapartida::windownuevapartida(QWidget *parent) :
             terreno[x][y]->setScaledContents(true);
             tierra[x][y]->show();
             terreno[x][y]->show();
-            matrizJuego[x][y] = 0;
-            estado[x][y] = -1;
         }
     }
 
@@ -66,12 +65,18 @@ windownuevapartida::windownuevapartida(QWidget *parent) :
     cantitadArbolesRojiNegro = 0;
     cantidadArbolesHeap = 0;
 
+    matrizJuego = new Matriz();
+    matrizArboles = new MatrizArboles();
+
     terreno[granjero->posX][granjero->posY]->setPixmap(QPixmap(":/imagenes/granjero.png"));
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(actualizarDatosGUI()));
     timer->start(250);
     mercadoPlataforma->start();
+
+    controlador = new ControladorHilos(matrizArboles, matrizJuego, tiposInfoArboles->buscarTipoArbol("ABB"));
+    controlador->start();
 }
 
 windownuevapartida::~windownuevapartida()
@@ -256,23 +261,23 @@ void windownuevapartida::datosMercado(){
 void windownuevapartida::pintarTablero(){
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if(matrizJuego[i][j] == 1){
+            if(matrizJuego->matrizJuego[i][j] == 1){
                 terreno[i][j]->setPixmap(QPixmap(":/imagenes/granjero.png"));
-            } else if(matrizJuego[i][j] == 10){
+            } else if(matrizJuego->matrizJuego[i][j] == 10){
                 terreno[i][j]->setPixmap(QPixmap(":/imagenes/heap.png"));
-            } else if(matrizJuego[i][j] == 3){
+            } else if(matrizJuego->matrizJuego[i][j] == 3){
                 terreno[i][j]->setPixmap(QPixmap(":/imagenes/avl.png"));
-            } else if(matrizJuego[i][j] == 4){
+            } else if(matrizJuego->matrizJuego[i][j] == 4){
                 terreno[i][j]->setPixmap(QPixmap(":/imagenes/abb.png"));
-            } else if(matrizJuego[i][j] == 5){
+            } else if(matrizJuego->matrizJuego[i][j] == 5){
                 terreno[i][j]->setPixmap(QPixmap(":/imagenes/rojinegro.png"));
-            } else if(matrizJuego[i][j] == 6){
+            } else if(matrizJuego->matrizJuego[i][j] == 6){
                 terreno[i][j]->setPixmap(QPixmap(":/imagenes/espantapajaros.png"));
-            } else if(matrizJuego[i][j] == 7){
+            } else if(matrizJuego->matrizJuego[i][j] == 7){
                 terreno[i][j]->setPixmap(QPixmap(":/imagenes/cuervo.png"));
-            } else if(matrizJuego[i][j] == 8){
+            } else if(matrizJuego->matrizJuego[i][j] == 8){
                 terreno[i][j]->setPixmap(QPixmap(":/imagenes/plaga.png"));
-            } else if(matrizJuego[i][j] == 9){
+            } else if(matrizJuego->matrizJuego[i][j] == 9){
                 terreno[i][j]->setPixmap(QPixmap(":/imagenes/oveja.png"));
             }
         }
@@ -391,16 +396,17 @@ void windownuevapartida::comprarAbolRojinegro(){
 }
 
 void windownuevapartida::sembrarArbolAVL(){
-    if(matrizJuego[granjero->posX][granjero->posY] == 0 || matrizJuego[granjero->posX][granjero->posY] == -1 || matrizJuego[granjero->posX][granjero->posY] == 2){
+    if(matrizJuego->matrizJuego[granjero->posX][granjero->posY] == 0 || matrizJuego->matrizJuego[granjero->posX][granjero->posY] == -1
+            || matrizJuego->matrizJuego[granjero->posX][granjero->posY] == 2){
         if(!avlComprados->isEmpty()){
             Avl * temporal = avlComprados->desEncolar()->arbolAVL;
             NodoArbolesTerreno * nuevoNodoArbolesTerreno = new NodoArbolesTerreno(NULL, temporal, NULL, NULL, "AVL");
-            matrizArbolesTerreno[granjero->posX][granjero->posY] = nuevoNodoArbolesTerreno;
-            matrizJuego[granjero->posX][granjero->posY] = 3;
+            matrizArboles->Terreno[granjero->posX][granjero->posY] = nuevoNodoArbolesTerreno;
+            matrizJuego->matrizJuego[granjero->posX][granjero->posY] = 3;
             nuevoNodoArbolesTerreno->posX = granjero->posX;
             nuevoNodoArbolesTerreno->posY = granjero->posY;
             listaArbolesTerreno->insertar(nuevoNodoArbolesTerreno);
-            estado[granjero->posX][granjero->posY] += 2;
+            matrizJuego->estado[granjero->posX][granjero->posY] += 2;
             cantidadArbolesAVL--;
             insertarEnTablaArboles();
         }else{
@@ -412,18 +418,21 @@ void windownuevapartida::sembrarArbolAVL(){
 }
 
 void windownuevapartida::sembrarArbolABB(){
-    if(matrizJuego[granjero->posX][granjero->posY] == 0 || matrizJuego[granjero->posX][granjero->posY] == -1 || matrizJuego[granjero->posX][granjero->posY] == 2){
+    if(matrizJuego->matrizJuego[granjero->posX][granjero->posY] == 0 || matrizJuego->matrizJuego[granjero->posX][granjero->posY] == -1
+            || matrizJuego->matrizJuego[granjero->posX][granjero->posY] == 2){
         if(!abbComprados->isEmpty()){
-            Arbol * temporal = abbComprados->desEncolar()->arbolABB;
-            NodoArbolesTerreno * nuevoNodoArbolesTerreno = new NodoArbolesTerreno(temporal, NULL, NULL, NULL, "ABB");
-            matrizArbolesTerreno[granjero->posX][granjero->posY] = nuevoNodoArbolesTerreno;
-            matrizJuego[granjero->posX][granjero->posY] = 4;
-            estado[granjero->posX][granjero->posY] += 2;
-            nuevoNodoArbolesTerreno->posX = granjero->posX;
-            nuevoNodoArbolesTerreno->posY = granjero->posY;
-            listaArbolesTerreno->insertar(nuevoNodoArbolesTerreno);
-            cantidadArbolesABB--;
-            insertarEnTablaArboles();
+            if(validarInfoArbol("ABB")){
+                Arbol * temporal = abbComprados->desEncolar()->arbolABB;
+                NodoArbolesTerreno * nuevoNodoArbolesTerreno = new NodoArbolesTerreno(temporal, NULL, NULL, NULL, "ABB");
+                matrizArboles->Terreno[granjero->posX][granjero->posY] = nuevoNodoArbolesTerreno;
+                matrizJuego->matrizJuego[granjero->posX][granjero->posY] = 4;
+                matrizJuego->estado[granjero->posX][granjero->posY] += 2;
+                nuevoNodoArbolesTerreno->posX = granjero->posX;
+                nuevoNodoArbolesTerreno->posY = granjero->posY;
+                listaArbolesTerreno->insertar(nuevoNodoArbolesTerreno);
+                cantidadArbolesABB--;
+                insertarEnTablaArboles();
+            }
         }else{
             mostrarMensaje("No tiene árboles disponibles debe de comprar");
         }
@@ -433,13 +442,14 @@ void windownuevapartida::sembrarArbolABB(){
 }
 
 void windownuevapartida::sembrarArbolHEAP(){
-    if(matrizJuego[granjero->posX][granjero->posY] == 0 || matrizJuego[granjero->posX][granjero->posY] == -1 || matrizJuego[granjero->posX][granjero->posY] == 2){
+    if(matrizJuego->matrizJuego[granjero->posX][granjero->posY] == 0 || matrizJuego->matrizJuego[granjero->posX][granjero->posY] == -1
+            || matrizJuego->matrizJuego[granjero->posX][granjero->posY] == 2){
         if(!heapComprados->isEmpty()){
             Heap * temporal = heapComprados->desEncolar()->arbolHeap;
             NodoArbolesTerreno * nuevoNodoArbolesTerreno = new NodoArbolesTerreno(NULL, NULL, temporal, NULL, "HEAP");
-            matrizArbolesTerreno[granjero->posX][granjero->posY] = nuevoNodoArbolesTerreno;
-            matrizJuego[granjero->posX][granjero->posY] = 10;
-            estado[granjero->posX][granjero->posY] += 2;
+            matrizArboles->Terreno[granjero->posX][granjero->posY] = nuevoNodoArbolesTerreno;
+            matrizJuego->matrizJuego[granjero->posX][granjero->posY] = 10;
+            matrizJuego->estado[granjero->posX][granjero->posY] += 2;
             nuevoNodoArbolesTerreno->posX = granjero->posX;
             nuevoNodoArbolesTerreno->posY = granjero->posY;
             listaArbolesTerreno->insertar(nuevoNodoArbolesTerreno);
@@ -454,13 +464,14 @@ void windownuevapartida::sembrarArbolHEAP(){
 }
 
 void windownuevapartida::sembrarArbolRojiNegro(){
-    if(matrizJuego[granjero->posX][granjero->posY] == 0 || matrizJuego[granjero->posX][granjero->posY] == -1 || matrizJuego[granjero->posX][granjero->posY] == 2){
+    if(matrizJuego->matrizJuego[granjero->posX][granjero->posY] == 0 || matrizJuego->matrizJuego[granjero->posX][granjero->posY] == -1
+            || matrizJuego->matrizJuego[granjero->posX][granjero->posY] == 2){
         if(!rojiNegroComprados->isEmpty()){
             Arbol * temporal = rojiNegroComprados->desEncolar()->arbolABB;
             NodoArbolesTerreno * nuevoNodoArbolesTerreno = new NodoArbolesTerreno(NULL, NULL, NULL, temporal, "ROJINEGRO");
-            matrizArbolesTerreno[granjero->posX][granjero->posY] = nuevoNodoArbolesTerreno;
-            matrizJuego[granjero->posX][granjero->posY] = 5;
-            estado[granjero->posX][granjero->posY] += 2;
+            matrizArboles->Terreno[granjero->posX][granjero->posY] = nuevoNodoArbolesTerreno;
+            matrizJuego->matrizJuego[granjero->posX][granjero->posY] = 5;
+            matrizJuego->estado[granjero->posX][granjero->posY] += 2;
             nuevoNodoArbolesTerreno->posX = granjero->posX;
             nuevoNodoArbolesTerreno->posY = granjero->posY;
             listaArbolesTerreno->insertar(nuevoNodoArbolesTerreno);
@@ -475,13 +486,14 @@ void windownuevapartida::sembrarArbolRojiNegro(){
 }
 
 void windownuevapartida::colocarEspantapajaros(){
-    if(matrizJuego[granjero->posX][granjero->posY] == 0){
+    if(matrizJuego->matrizJuego[granjero->posX][granjero->posY] == 0){
         if(cantidadEspantapajaros > 0){
-            matrizJuego[granjero->posX][granjero->posY] = 6;
+            matrizJuego->matrizJuego[granjero->posX][granjero->posY] = 6;
             cantidadEspantapajaros--;
-        }
+        }else
+            mostrarMensaje("No tiene más espantapájaros disponibles");
     }else{
-        mostrarMensaje("No puede colocar el espantapajaros en esa posición por que está ocupado por otro objeto");
+        mostrarMensaje("No puede colocar el espantapájaros en esa posición por que está ocupado por otro objeto");
     }
 }
 
@@ -517,7 +529,7 @@ void windownuevapartida::insertarEnTablaArboles(){
         item = new QTableWidgetItem(tipo);
         item->setFlags(item->flags() & ~Qt::ItemIsEditable);
 
-        QString ubicacion = "X: " + QString::number(temporal->posX) + " Y: " + QString::number(temporal->posY);        
+        QString ubicacion = QString::number(temporal->posX) + " , " + QString::number(temporal->posY);
         item2 = new QTableWidgetItem(ubicacion);
         item2->setFlags(item2->flags() & ~Qt::ItemIsEditable);
         if(tipo == "ABB"){
@@ -590,38 +602,80 @@ void windownuevapartida::insertarEnTablaArboles(){
 }
 
 void windownuevapartida::actualizarTablaArboles(){
-    int fila = 0;
-    NodoArbolesTerreno * temporal = listaArbolesTerreno->primerNodo;
-    while (temporal != NULL){
-        QString tipo = temporal->tipoArbol;
+    int filas = ui->tablaArbolesComprados->rowCount();
+    int posX = 0;
+    int posY = 0;
+    QString tipo;
+    QString posiciones;
+    QStringList pos;
+    for (int i = 0; i < filas; i++) {
+        posiciones = ui->tablaArbolesComprados->item(i, 1)->text();
+        pos = posiciones.split(" , ");
+        posX = pos.at(0).toInt();
+        posY = pos.at(1).toInt();
+
+        tipo = matrizArboles->Terreno[posX][posY]->tipoArbol;
         if(tipo == "ABB"){
-            Arbol * nodo = temporal->abb;
-            ui->tablaArbolesComprados->item(fila, 2)->setText(QString::number(nodo->cantidadFrutos()));
-            ui->tablaArbolesComprados->item(fila, 3)->setText(QString::number(nodo->montoTotal()));
-            ui->tablaArbolesComprados->item(fila, 4)->setText(QString::number(nodo->vendidos));
-            ui->tablaArbolesComprados->item(fila, 5)->setText(QString::number(nodo->perdidos));
+            Arbol * nodo = matrizArboles->Terreno[posX][posY]->abb;
+            ui->tablaArbolesComprados->item(i, 2)->setText(QString::number(nodo->cantidadFrutos()));
+            ui->tablaArbolesComprados->item(i, 3)->setText(QString::number(nodo->montoTotal()));
+            ui->tablaArbolesComprados->item(i, 4)->setText(QString::number(nodo->vendidos));
+            ui->tablaArbolesComprados->item(i, 5)->setText(QString::number(nodo->perdidos));
         }
         if(tipo == "AVL"){
-            Avl * nodo = temporal->avl;
-            ui->tablaArbolesComprados->item(fila, 2)->setText(QString::number(nodo->cantidadFrutos()));
-            ui->tablaArbolesComprados->item(fila, 3)->setText(QString::number(nodo->montoTotal()));
-            ui->tablaArbolesComprados->item(fila, 4)->setText(QString::number(nodo->vendidos));
-            ui->tablaArbolesComprados->item(fila, 5)->setText(QString::number(nodo->perdidos));
+            Avl * nodo = matrizArboles->Terreno[posX][posY]->avl;
+            ui->tablaArbolesComprados->item(i, 2)->setText(QString::number(nodo->cantidadFrutos()));
+            ui->tablaArbolesComprados->item(i, 3)->setText(QString::number(nodo->montoTotal()));
+            ui->tablaArbolesComprados->item(i, 4)->setText(QString::number(nodo->vendidos));
+            ui->tablaArbolesComprados->item(i, 5)->setText(QString::number(nodo->perdidos));
         }
         if(tipo == "HEAP"){
-            Heap * nodo = temporal->heap;
-            ui->tablaArbolesComprados->item(fila, 2)->setText(QString::number(nodo->cantidadFrutos()));
-            ui->tablaArbolesComprados->item(fila, 3)->setText(QString::number(nodo->montoTotal()));
-            ui->tablaArbolesComprados->item(fila, 4)->setText(QString::number(nodo->vendidos));
-            ui->tablaArbolesComprados->item(fila, 5)->setText(QString::number(nodo->perdidos));
+            Heap * nodo = matrizArboles->Terreno[posX][posY]->heap;
+            ui->tablaArbolesComprados->item(i, 2)->setText(QString::number(nodo->cantidadFrutos()));
+            ui->tablaArbolesComprados->item(i, 3)->setText(QString::number(nodo->montoTotal()));
+            ui->tablaArbolesComprados->item(i, 4)->setText(QString::number(nodo->vendidos));
+            ui->tablaArbolesComprados->item(i, 5)->setText(QString::number(nodo->perdidos));
         }
         if(tipo == "ROJINEGRO"){
-            Arbol * nodo = temporal->rojinegro;
-            ui->tablaArbolesComprados->item(fila, 2)->setText(QString::number(nodo->cantidadFrutos()));
-            ui->tablaArbolesComprados->item(fila, 3)->setText(QString::number(nodo->montoTotal()));
-            ui->tablaArbolesComprados->item(fila, 4)->setText(QString::number(nodo->vendidos));
-            ui->tablaArbolesComprados->item(fila, 5)->setText(QString::number(nodo->perdidos));
+            Arbol * nodo = matrizArboles->Terreno[posX][posY]->rojinegro;
+            ui->tablaArbolesComprados->item(i, 2)->setText(QString::number(nodo->cantidadFrutos()));
+            ui->tablaArbolesComprados->item(i, 3)->setText(QString::number(nodo->montoTotal()));
+            ui->tablaArbolesComprados->item(i, 4)->setText(QString::number(nodo->vendidos));
+            ui->tablaArbolesComprados->item(i, 5)->setText(QString::number(nodo->perdidos));
         }
-        temporal = temporal->siguiente;
     }
+}
+
+
+bool windownuevapartida::validarInfoArbol(QString tipoArbol){
+    NodoInfoArbol * temporal = tiposInfoArboles->buscarTipoArbol(tipoArbol);
+    if (temporal->cantidadFrutos == 0){
+        mostrarMensaje("Ingrese la cantidad de frutos del arbol en la sección de configuración");
+        return false;
+    }
+    if(temporal->precio == 0){
+        mostrarMensaje("Ingrese el precio del arbol en la sección de configuración");
+        return false;
+    }
+    if(temporal->rangoInferior >= temporal->rangoSuperior){
+        mostrarMensaje("El rango inferior es mayor o igual al rango superior");
+        return false;
+    }
+    if(temporal->rangoInferior == 0){
+        mostrarMensaje("Ingrese el rango inferior del arbol en la sección de configuración");
+        return false;
+    }
+    if(temporal->rangoSuperior == 0){
+        mostrarMensaje("Ingrese el rango superior del arbol en la sección de configuración");
+        return false;
+    }
+    if(temporal->tiempoCosecha == 0){
+        mostrarMensaje("Ingrese el tiempo que tarda en producir cosecha el arbol en la sección de configuración");
+        return false;
+    }
+    if(temporal->tiempoCrecimiento == 0){
+        mostrarMensaje("Ingrese el tiempo de crecimiento del arbol en la sección de configuración");
+        return false;
+    }
+    return true;
 }

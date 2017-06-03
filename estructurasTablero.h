@@ -173,4 +173,16 @@ struct ListaNodosArboles{
     }
 };
 
+struct Matriz{
+    int matrizJuego[8][8];
+    int estado[8][8];
+    Matriz(){
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                matrizJuego[i][j] = 0;
+                estado[i][j] = -1;
+           }
+        }
+    }
+};
 #endif // ESTRUCTURASTABLERO_H

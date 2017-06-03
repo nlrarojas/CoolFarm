@@ -12,11 +12,13 @@ private:
     int estado;
     void run();
     QMutex mutex;
-    HiloABB * hiloAbb;
 
 public:
-    ControladorHilos(NodoArbolesTerreno * [8][8], int [8][8], NodoInfoArbol *);
+    ControladorHilos(MatrizArboles * matrizArboles, Matriz * matrizJuego, NodoInfoArbol * pNodoInfoAbb);
     void cambiarEstado(int);
+    MatrizArboles * matrizArboles;
+    Matriz * matrizJuego;
+    HiloABB * hiloAbb;
 };
 
 #endif // CONTROLADORHILOS_H

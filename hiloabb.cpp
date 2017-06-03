@@ -18,8 +18,9 @@ void HiloABB::run(){
                 //ABB es un 4 en la matriz del juego
                 for (int i = 0; i < 8; i++) {
                     for (int j = 0; j < 8; j++) {
-                        if(matrizJuego[i][j] == 4){
-                            matrizArbolesTerreno[i][j]->abb->insertar(aleatorio());
+                        if(matrizJuego->matrizJuego[i][j] == 4){
+                            if(nodoArbol->cantidadFrutos > matrizArboles->Terreno[i][j]->abb->cantidadFrutos())
+                                matrizArboles->Terreno[i][j]->abb->insertar(aleatorio());
                         }
                     }
                 }

@@ -212,4 +212,10 @@ struct ColaHeapComprados{
     }
 };
 
+struct MatrizArboles{
+    NodoArbolesTerreno * Terreno[8][8];
+    MatrizArboles(){
+    }
+};
+
 #endif // ARBOLESCOMPRADOS_H

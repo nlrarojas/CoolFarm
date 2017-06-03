@@ -28,6 +28,27 @@ class windownuevapartida : public QMainWindow
 public:
     explicit windownuevapartida(QWidget *parent = 0);
     ~windownuevapartida();
+    void datosMercado(void);
+    void pintarTablero(void);
+    void estadoMercado(void);
+
+    void comprarAbolAVL(void);
+    void comprarAbolABB(void);
+    void comprarAbolHeap(void);
+    void comprarAbolRojinegro(void);
+
+    void sembrarArbolAVL(void);
+    void sembrarArbolABB(void);
+    void sembrarArbolHEAP(void);
+    void sembrarArbolRojiNegro(void);
+
+    void colocarEspantapajaros(void);
+    void mostrarMensaje(QString);
+
+    void insertarEnTablaArboles(void);
+    void actualizarTablaArboles(void);
+
+    bool validarInfoArbol(QString tipoArbol);
 
 private slots:
     void actualizarDatosGUI();
@@ -61,7 +82,7 @@ private:
     ColaHeapComprados * heapComprados;
     ColaABBComprados * rojiNegroComprados;
 
-    NodoArbolesTerreno * matrizArbolesTerreno[8][8];
+    MatrizArboles * matrizArboles;
     ListaNodosArbolesTerreno * listaArbolesTerreno;
     plaga * matrizPlagas[8][8];
 
@@ -74,29 +95,10 @@ private:
     int tipoPlaga;
     int tipoArbol;
     int cantidadEspantapajaros;
-    int matrizJuego[8][8];
-    int estado[8][8];
+    Matriz * matrizJuego;
     QLabel * terreno[8][8];
 
-    void datosMercado(void);
-    void pintarTablero(void);
-    void estadoMercado(void);
-
-    void comprarAbolAVL(void);
-    void comprarAbolABB(void);
-    void comprarAbolHeap(void);
-    void comprarAbolRojinegro(void);
-
-    void sembrarArbolAVL(void);
-    void sembrarArbolABB(void);
-    void sembrarArbolHEAP(void);
-    void sembrarArbolRojiNegro(void);
-
-    void colocarEspantapajaros(void);
-    void mostrarMensaje(QString);
-
-    void insertarEnTablaArboles(void);
-    void actualizarTablaArboles(void);
+    ControladorHilos * controlador;
 };
 
 #endif // WINDOWNUEVAPARTIDA_H
